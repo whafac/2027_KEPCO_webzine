@@ -1,0 +1,5 @@
+어비 남소영체 / UhBee Namsoyoung
+Copyright 어비폰트. 문의 font@uhbee.net
+어비폰트는 상업적 용도/변형 사용에도 무료입니다. 인쇄, 교육용, 이모티콘, 로고, 방송, 인터넷 등 모든 사용가능. 무료 제공 폰트이며 apk, WebFont 등 변환 결과물은 무료로 제공되어야 합니다. 유료판매나 조건부 교환 금지.
+License reference: https://www.sandollcloud.com/free-font/16547/UhBee-Namsoyoung-TTF
+Webfont source: https://cdn.jsdelivr.net/gh/fontbee/font@main/Uhbeefont/UhBeenamsoyoung.woff

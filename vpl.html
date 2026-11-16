@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>송전탑 없이 길을 넓히다 · KEPCO:GRAPHY</title>
+<meta name="description" content="송전탑 대신 배터리로 전력망의 여유를 늘리는 가상송전선로(VPL). 원리부터 그리드포밍까지 살펴봅니다.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="css/style.css?v=20261115-nav13pt"><link rel="stylesheet" href="css/article.css?v=21">
+</head><body class="article-page">
+<a class="skip" href="#article-content">본문으로 건너뛰기</a>
+  <header class="topbar">
+    <span class="readbar" aria-hidden="true"></span>
+    <div class="topbar-inner">
+      <a class="brand" href="index.html#cover" aria-label="KEPCO 웹진 표지로 이동">
+        <span class="mark" aria-hidden="true"></span>
+        <span class="brand-meta">2027 JANUARY<br>Vol.643</span>
+      </a>
+      <nav class="desktop-nav" aria-label="웹진 목차">
+        <a href="index.html#cover">이달의 주제</a>
+        <a href="index.html#focus">KEPCO FOCUS</a>
+        <a href="index.html#perspective">PERSPECTIVE</a>
+        <a href="index.html#field">FIELD &amp; PEOPLE</a>
+        <a href="index.html#news">KEPCO NEWS</a>
+        <a href="travel.html">TRAVEL</a>
+        <a href="index.html#life">LIFE &amp; CULTURE</a>
+      </nav>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-drawer">
+        <span class="menu-icon" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="sr-only">메뉴 열기</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="nav-drawer" id="nav-drawer" hidden>
+    <div class="nav-panel" role="dialog" aria-modal="true" aria-labelledby="nav-title">
+      <div class="nav-head">
+        <p id="nav-title">Vol.643</p>
+        <button class="nav-close" type="button">닫기</button>
+      </div>
+      <nav aria-label="웹진 목차">
+        <a href="index.html#cover">이달의 주제</a>
+        <a href="index.html#focus">KEPCO FOCUS</a>
+        <a href="index.html#perspective">PERSPECTIVE</a>
+        <a href="index.html#field">FIELD &amp; PEOPLE</a>
+        <a href="index.html#news">KEPCO NEWS</a>
+        <a href="travel.html">TRAVEL</a>
+        <a href="index.html#life">LIFE &amp; CULTURE</a>
+      </nav>
+    </div>
+  </div>
+
+
+<svg class="neon-filter-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+<defs>
+  <filter id="vpl-original-lines" x="-1%" y="-1%" width="102%" height="102%" color-interpolation-filters="sRGB">
+    <feColorMatrix in="SourceGraphic" type="luminanceToAlpha" result="luminance"/>
+    <feComponentTransfer in="luminance" result="bright-lines"><feFuncA type="table" tableValues="0 0 0 0 0 0 0 0 .3 1"/></feComponentTransfer>
+    <feComposite in="SourceGraphic" in2="bright-lines" operator="in" result="original-lines"/>
+    <feGaussianBlur in="original-lines" stdDeviation="1" result="soft-light"/>
+    <feMerge><feMergeNode in="soft-light"/><feMergeNode in="original-lines"/></feMerge>
+  </filter>
+  <filter id="vpl-title-light" x="-2%" y="-2%" width="104%" height="104%" color-interpolation-filters="sRGB">
+    <feColorMatrix in="SourceGraphic" type="luminanceToAlpha" result="title-luminance"/>
+    <feComponentTransfer in="title-luminance" result="title-alpha"><feFuncA type="linear" slope="4" intercept="-2.5"/></feComponentTransfer>
+    <feFlood flood-color="#ffe6ab" result="title-color"/>
+    <feComposite in="title-color" in2="title-alpha" operator="in" result="title-strokes"/>
+    <feGaussianBlur in="title-strokes" stdDeviation="3.5" result="title-glow"/>
+    <feMerge><feMergeNode in="title-glow"/><feMergeNode in="title-glow"/><feMergeNode in="title-strokes"/></feMerge>
+  </filter>
+  <mask id="vpl-line-areas" maskUnits="objectBoundingBox" maskContentUnits="objectBoundingBox" style="mask-type:alpha">
+    <ellipse cx=".702" cy=".8355" rx=".025" ry=".044" fill="white"/>
+    <ellipse cx=".78" cy=".8355" rx=".025" ry=".044" fill="white"/>
+    <ellipse cx=".858" cy=".8355" rx=".025" ry=".044" fill="white"/>
+    <ellipse cx=".936" cy=".8355" rx=".025" ry=".044" fill="white"/>
+  </mask>
+</defs></svg>
+<main id="article-content" class="article-main">
+<article>
+<header class="article-cover">
+  <figure class="article-overview">
+    <button class="overview-open" type="button" aria-haspopup="dialog" aria-controls="vpl-image-dialog" aria-label="가상송전선로 개념도 크게 보기">
+      <img class="article-cover-art" src="assets/vpl/vpl-overview.png" width="1672" height="941" alt="재생에너지 발전 → 발전소 측 ESS 저장 → 기존 송전망을 통한 이동 → 수요지 ESS 공급으로 이어지는 가상송전선로 개념도">
+      <span class="vpl-neon-trace" aria-hidden="true"><img src="assets/vpl/vpl-overview.png" width="1672" height="941" alt=""></span>
+      <span class="vpl-title-trace" aria-hidden="true"><img src="assets/vpl/vpl-overview.png" width="1672" height="941" alt=""></span>
+    </button>
+  </figure>
+  <div class="article-cover-inner">
+    <h1>송전탑 없이 길을 넓히다<span class="title-period">.</span></h1>
+  </div>
+</header>
+<div class="article-intro page-width">
+  <div class="article-credit"><span>글</span> KEPCO 편집실<br><span>분야</span> 전력망 · 에너지 기술</div>
+  <div><p class="article-lead">퇴근길 정체를 풀려면<br class="desktop-break"> 도로를 새로 내야 할까?</p>
+  <p>도로를 넓히는 데 10년이 걸린다면, 차가 몰리는 시간에 잠시 쉬어 갈 ‘대기 공간’을 만드는 편이 더 빠를지 모른다. 전기의 길도 마찬가지다. 송전선로 하나를 새로 짓는 데 길게는 10년이 걸리는 지금, 한전은 송전탑 대신 거대한 배터리로 송전 여력을 늘리는 ‘가상송전선로(VPL, Virtual Power Line)’<sup class="term-mark"><a id="ref-vpl" href="#term-vpl" role="doc-noteref" aria-label="가상송전선로(VPL) 용어해설">*</a></sup>를 2027년부터 본격 추진한다.</p></div>
+</div>
+<div class="article-facts page-width" aria-label="가상송전선로 핵심 수치">
+  <div><span class="fact-label">765kV 송전선로 건설</span><p>10<span>년</span></p><span>새 송전선로를 짓는 데 걸리는 시간</span></div>
+  <div><span class="fact-label">VPL에 필요한 새 송전탑</span><p>0<span>개</span></p><span>기존 선로의 이용 효율을 높이는 방식</span></div>
+  <div><span class="fact-label">가상송전선로 사업 착수</span><p>2027<span>년</span></p><span>배터리로 여는 전력망의 새로운 길</span></div>
+</div>
+<div class="article-layout page-width">
+  <aside class="article-index"><p>이 글의 흐름</p><nav aria-label="기사 내 목차"><a href="#waiting"><span>01</span> 기다리지 않는 전력망</a><a href="#battery"><span>02</span> 배터리가 만드는 길</a><a href="#forming"><span>03</span> 전력망을 지키는 기술</a></nav><a class="index-back" href="index.html#focus">목록으로 돌아가기 ↗</a></aside>
+  <div class="article-body">
+  <section class="article-section" id="waiting"><p class="section-number">01 / THE CHALLENGE</p><h2>10년을 기다리지 않는 전력망</h2>
+    <p>재생에너지와 반도체·AI 데이터센터 같은 첨단산업이 빠르게 늘면서, 전기를 실어 나르는 송전망의 역할은 그 어느 때보다 커졌다. 그러나 송전선로는 하루아침에 생기지 않는다. 한전의 표준 공기에 따르면 765kV 송전선로는 약 10년, 345kV는 약 9년, 154kV도 6년 6개월 이상이 걸린다.</p>
+    <p>그사이 특정 구간에 전기가 몰리면 선로가 감당할 수 있는 용량을 넘어서는 ‘송전 혼잡’이 생기고, 애써 만든 전기를 제때 보내지 못하는 일도 벌어진다. 가상송전선로는 이 시간의 간극을 메우는 해법이다.</p>
+    <figure class="build-chart"><figcaption>송전선로 하나를 짓는 데 걸리는 시간<small>한전 표준 사업 기간</small></figcaption>
+      <div class="bar-row"><span>154kV</span><div><i style="width:65%"></i></div><strong>6년 6개월</strong></div>
+      <div class="bar-row"><span>345kV</span><div><i style="width:90%"></i></div><strong>9년</strong></div>
+      <div class="bar-row"><span>765kV</span><div><i style="width:100%"></i></div><strong>10년</strong></div>
+    </figure>
+    <p>지난 2026년 9월 기후에너지환경부와 한전이 연 ‘전력산업 산·학·연·관 전문포럼 성과발표회’에서 가상송전선로는 대표 과제로 꼽혔다. 송전망을 ‘짓는 것’에서 ‘똑똑하게 쓰는 것’으로 넓히는 흐름이 본격화하고 있다.</p>
+  </section>
+  <section class="article-section" id="battery"><p class="section-number">02 / HOW IT WORKS</p><h2>송전선을 대신할 배터리,<br>망을 받치다</h2>
+    <p>가상송전선로의 중심에는 대용량 배터리에너지저장장치(BESS)<sup class="term-mark"><a id="ref-ess" href="#term-ess" role="doc-noteref" aria-label="ESS · BESS 용어해설">*</a></sup>가 있다. 혼잡한 송전선로 구간에 ESS를 두고, 전기가 몰릴 때는 저장했다가 선로에 여유가 생기면 내보낸다. 눈에 보이는 선은 그대로지만 배터리가 시간차를 두고 전기를 나눠 보내면서 선로가 하나 더 생긴 것과 같은 효과를 낸다.</p>
+    <p>관건은 언제 담고 언제 보낼지를 판단하는 운영 능력이다. 송전 혼잡을 미리 내다보고 계통 상황에 맞춰 충·방전을 제어해야 배터리가 비로소 ‘선로’의 역할을 한다.</p>
+    <figure class="flow-figure"><figcaption>같은 선로, 달라지는 전기의 흐름</figcaption><ol class="flow-route" aria-label="가상송전선로의 흐름"><li><span>01</span><strong>재생에너지</strong><small>태양광 · 풍력</small></li><li><span>02</span><strong>저장</strong><small>발전소 측 ESS</small></li><li><span>03</span><strong>이동</strong><small>기존 송전망</small></li><li><span>04</span><strong>공급</strong><small>수요지 ESS</small></li></ol>
+      <div class="flow-buttons" role="group" aria-label="송전선로 상황 선택"><button type="button" class="selected" data-mode="charge" aria-pressed="true">전기가 몰릴 때 <span>충전</span></button><button type="button" data-mode="discharge" aria-pressed="false">선로에 여유가 생길 때 <span>방전</span></button></div>
+      <div class="flow-explanation" aria-live="polite"><span class="flow-direction">송전선로 → 배터리</span><p>송전선로가 감당하지 못하는 전기를 배터리에 충전해 둔다.</p></div>
+    </figure>
+    <blockquote>새로운 선로를 더하는 대신,<br>전기를 보내는 시간을 나눈다.</blockquote>
+    <p>결과적으로 송전선로는 같은 선로로 더 많은 전기를 전달하며, 배터리(ESS)는 새 송전선로 없이 기존 설비의 이용 효율을 높인다.</p>
+    <div class="article-note"><p class="note-heading">전력망의 정식 자원으로</p><p>기후에너지환경부 2027년 예산안에 가상송전선로 사업비가 반영됐다(국회 심의 전 정부안 기준). 가상송전선로를 전력수급기본계획에 반영해 정식 전력망 자원으로 키우는 방향이다. 산·학·연·관 전문가가 5개월간 8개 분과로 머리를 맞대 도출한 혁신과제 중 하나다.</p></div>
+  </section>
+  <section class="article-timeline"><p class="section-number">THE NEXT STEPS</p><h2>가상송전선로·그리드포밍 타임라인</h2>
+    <ol><li><time>2026. 4–9</time><p>전력산업 신과제 전문가 분과 운영, 가상송전선로·그리드포밍 과제 도출</p></li><li><time>2026. 9</time><p>전력산업 신과제 성과발표회에서 가상송전선로 추진 계획 발표</p></li><li><time>2026. 11</time><p>그리드포밍 배터리 시험·검증 체계 구축</p></li><li><time>2027</time><p>가상송전선로 사업 착수, 그리드포밍 배터리 실계통 운전 시작</p></li><li><time>2030</time><p>가상송전선로를 국가 단위 대규모 사업으로 확대</p></li></ol>
+  </section>
+  <section class="article-section" id="forming"><p class="section-number">03 / GRID-FORMING</p><h2>배터리가 전력망을 지킨다,<br>그리드포밍</h2>
+    <p>한전은 배터리가 전력망을 스스로 받치는 ‘그리드포밍(Grid-Forming)’<sup class="term-mark"><a id="ref-forming" href="#term-forming" role="doc-noteref" aria-label="그리드포밍 용어해설">*</a></sup> 기술도 함께 준비하고 있다. 태양광·풍력이 늘수록 줄어드는 전력망의 관성<sup class="term-mark"><a id="ref-inertia" href="#term-inertia" role="doc-noteref" aria-label="관성 용어해설">*</a></sup>을 보완하기 위해, 배터리가 전압과 주파수를 스스로 만들고 유지하도록 하는 기술이다.</p>
+    <p>기존 배터리는 전력망의 전압과 주파수를 측정한 뒤 그에 맞춰 전류를 내보내는 ‘전류원(그리드팔로잉)’ 방식이다. 기준이 되는 전력망이 흔들리면 배터리도 함께 흔들릴 수밖에 없다. 그리드포밍은 이 관계를 뒤집는다.</p>
+    <p>배터리의 전력변환장치(PCS·인버터)가 스스로 전압의 크기와 위상을 만들어 내는 ‘전압원’으로 동작하며, 회전하는 발전기의 관성을 소프트웨어로 흉내 내는 ‘가상 동기발전기(VSG)’ 제어로 주파수 변화를 버텨 낸다.</p>
+    <div class="comparison-wrap"><table class="comparison"><caption>기존 배터리와 그리드포밍 배터리의 차이</caption><thead><tr><th scope="col">구분</th><th scope="col">기존 배터리<br><small>그리드팔로잉</small></th><th scope="col">그리드포밍 배터리</th></tr></thead><tbody><tr><th scope="row">역할</th><td>전력망의 주파수와 전압을 따라간다</td><td>스스로 주파수와 전압을 만들고 유지한다</td></tr><tr><th scope="row">강점</th><td>안정된 전력망에서 효율적으로 충전·방전</td><td>관성이 부족한 전력망을 안정시킨다</td></tr><tr><th scope="row">비유</th><td>앞사람을 따라 걷는 사람</td><td>대열의 박자를 잡아 주는 사람</td></tr></tbody></table></div>
+    <p>송전망 중앙계약 BESS에 적용할 그리드포밍 계통연계 기술기준을 정립했고, 실계통 운전을 위한 시험·검증 체계를 마련해 2027년부터 실제 계통에 적용한다.</p>
+    <p class="article-ending">송전탑을 세우는 10년을 기다리는 대신,<br>이미 있는 길을 더 넓고 단단하게 쓰는 것.</p><p>가상송전선로는 에너지 전환 시대의 전력망이 나아갈 새로운 방향을 보여 준다.</p>
+  </section>
+  <section class="article-glossary" id="glossary"><h2>용어해설</h2><dl><div><dt id="term-vpl">가상송전선로(VPL)<sup class="term-mark"><a href="#ref-vpl" role="doc-backlink" aria-label="가상송전선로(VPL) 본문으로 돌아가기">*</a></sup></dt><dd>Virtual Power Line. 혼잡한 송전선로 양 끝에 대용량 ESS를 설치해, 새 선로 없이 송전 여력을 늘리는 방식.</dd></div><div><dt id="term-ess">ESS · BESS<sup class="term-mark"><a href="#ref-ess" role="doc-backlink" aria-label="ESS · BESS 본문으로 돌아가기">*</a></sup></dt><dd>에너지저장장치(Energy Storage System). 배터리를 쓰는 경우 BESS(Battery ESS)라고 부른다.</dd></div><div><dt id="term-forming">그리드포밍<sup class="term-mark"><a href="#ref-forming" role="doc-backlink" aria-label="그리드포밍 본문으로 돌아가기">*</a></sup></dt><dd>배터리가 스스로 주파수와 전압을 만들어 전력망을 안정시키는 기술.</dd></div><div><dt id="term-inertia">관성<sup class="term-mark"><a href="#ref-inertia" role="doc-backlink" aria-label="관성 본문으로 돌아가기">*</a></sup></dt><dd>발전기의 회전체가 돌면서 전력망의 주파수 변화를 버텨 주는 힘. 재생에너지가 늘수록 줄어든다.</dd></div></dl></section>
+  <p class="article-source">이 기사는 제공된 KEPCO 2027년 1월호 원고를 바탕으로 구성했습니다. 사업 일정과 예산 관련 내용은 원고 작성 시점의 계획을 기준으로 합니다.</p>
+  <div class="article-bottom"><a href="index.html#focus">← KEPCO FOCUS 목록으로</a><a href="#article-content">맨 위로 ↑</a></div>
+  </div>
+</div>
+</article>
+</main>
+<footer class="article-footer"><a class="mark mark-gray" href="index.html" aria-label="KEPCO 웹진 홈"></a><p>KEPCO Web Magazine © 2026 KEPCO. All Rights Reserved.</p></footer>
+<dialog class="vpl-lightbox" id="vpl-image-dialog" aria-labelledby="vpl-image-title">
+  <div class="lightbox-head"><h2 id="vpl-image-title">가상송전선로(VPL) 개념도</h2><button class="lightbox-close" type="button">닫기 ×</button></div>
+  <p class="lightbox-hint">작은 화면에서는 이미지를 좌우로 밀어 자세히 볼 수 있습니다.</p>
+  <div class="vpl-image-scroll" tabindex="0" role="region" aria-label="확대 개념도, 좌우 스크롤 가능"><img src="assets/vpl/vpl-overview.png" width="1672" height="941" alt="재생에너지, 발전소 측 ESS, 기존 송전망, 수요지 ESS를 연결한 VPL 개념도"></div>
+</dialog>
+<script src="js/article.js?v=7"></script>
+</body></html>

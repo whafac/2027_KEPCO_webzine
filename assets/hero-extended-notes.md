@@ -1,0 +1,1 @@
+Built-in image_gen edits of hero-sky.png and transparent hero-flag-kepco.png. Prompt: outpaint downward only about 200px; keep original scale/framing/flag/logo, continue teal sky naturally and extend metal pole to bottom with transparent background. Original assets preserved. Outputs: hero-sky-extended.png, hero-flag-extended.png.

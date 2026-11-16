@@ -1,0 +1,1 @@
+Built-in image_gen edit. Source: perspective-wide.png. Prompt: Outpaint only vertically; preserve existing panorama scale and perspective; extend navy night sky above and wooded foreground, power lines and roads below; no text or UI. Original retained.

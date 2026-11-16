@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="100" viewBox="0 0 640 100" preserveAspectRatio="none">
+<defs><filter id="grain" x="-3%" y="-12%" width="106%" height="124%"><feTurbulence type="fractalNoise" baseFrequency=".38 .6" numOctaves="3" seed="14" result="noise"/><feColorMatrix in="noise" type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 2.2 -.45" result="speckle"/><feComposite in="SourceGraphic" in2="speckle" operator="in"/></filter></defs>
+<g filter="url(#grain)" fill="#ffda32">
+<path d="M4 65 Q67 43 135 47 Q213 56 292 39 Q374 22 447 28 Q531 33 626 9 L638 27 Q551 60 456 58 Q379 50 303 68 Q216 88 137 77 Q67 73 12 87 L16 75Z"/>
+<path opacity=".7" d="M11 56 Q83 36 143 42 Q220 49 295 31 Q381 15 450 22 Q548 24 624 3 L629 11 Q543 35 449 32 Q373 26 298 44 Q214 60 137 51 Q69 47 6 66Z"/>
+<path opacity=".55" d="M19 88 Q88 76 140 83 Q218 94 308 75 Q388 57 460 65 Q550 65 632 37 L626 44 Q540 74 458 71 Q384 66 310 83 Q218 101 137 90 Q72 83 20 95Z"/>
+</g></svg>

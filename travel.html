@@ -1,0 +1,103 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>해가 떠오르고, 땅이 끝나는 곳 · TWIN TRIP</title><meta name="description" content="울산 간절곶과 포르투갈 호카곶. 끝과 시작이 맞닿은 두 곳으로 떠나는 새해 첫 여행.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"><link rel="stylesheet" href="css/style.css?v=20261115-nav13pt"><link rel="stylesheet" href="css/travel.css?v=3"></head><body class="travel-page">
+<script>
+/* 본문이 그려지기 전에 방금 확대된 사진을 화면에 깔아 흰 깜빡임을 막는다. */
+(function () {
+  try {
+    var entry = JSON.parse(sessionStorage.getItem("travel-entry") || "null");
+    if (!entry || Date.now() - entry.time > 15000) return;
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    var portal = document.createElement("div");
+    portal.className = "travel-portal is-arrive " + (entry.mode === "pair" ? "is-pair" : "is-one");
+    portal.setAttribute("aria-hidden", "true");
+    portal.style.filter = entry.blur || "blur(5px)";
+    function add(src) {
+      if (!src) return;
+      var img = document.createElement("img");
+      img.alt = "";
+      img.decoding = "sync";
+      img.src = src;
+      portal.appendChild(img);
+    }
+    if (entry.frames && entry.frames.length) {
+      portal.className = 'travel-portal is-arrive is-deep';
+      entry.frames.forEach(function (frame) {
+        add(frame.src);
+        var img = portal.lastElementChild;
+        img.style.cssText = 'position:absolute;left:' + frame.left + 'px;top:' + frame.top + 'px;width:' + frame.width + 'px;height:' + frame.height + 'px;max-width:none;object-fit:cover;';
+      });
+    }
+    else if (entry.mode === "pair") { add(entry.left); add(entry.right); }
+    else add(entry.src);
+    if (!portal.childElementCount) return;
+    document.body.appendChild(portal);
+  } catch (error) {}
+})();
+</script>
+<a class="skip" href="#travel-content">본문으로 건너뛰기</a>
+  <header class="topbar">
+    <span class="readbar" aria-hidden="true"></span>
+    <div class="topbar-inner">
+      <a class="brand" href="index.html#cover" aria-label="KEPCO 웹진 표지로 이동">
+        <span class="mark" aria-hidden="true"></span>
+        <span class="brand-meta">2027 JANUARY<br>Vol.643</span>
+      </a>
+      <nav class="desktop-nav" aria-label="웹진 목차">
+        <a href="index.html#cover">이달의 주제</a>
+        <a href="index.html#focus">KEPCO FOCUS</a>
+        <a href="index.html#perspective">PERSPECTIVE</a>
+        <a href="index.html#field">FIELD &amp; PEOPLE</a>
+        <a href="index.html#news">KEPCO NEWS</a>
+        <a href="travel.html">TRAVEL</a>
+        <a href="index.html#life">LIFE &amp; CULTURE</a>
+      </nav>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-drawer">
+        <span class="menu-icon" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="sr-only">메뉴 열기</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="nav-drawer" id="nav-drawer" hidden>
+    <div class="nav-panel" role="dialog" aria-modal="true" aria-labelledby="nav-title">
+      <div class="nav-head">
+        <p id="nav-title">Vol.643</p>
+        <button class="nav-close" type="button">닫기</button>
+      </div>
+      <nav aria-label="웹진 목차">
+        <a href="index.html#cover">이달의 주제</a>
+        <a href="index.html#focus">KEPCO FOCUS</a>
+        <a href="index.html#perspective">PERSPECTIVE</a>
+        <a href="index.html#field">FIELD &amp; PEOPLE</a>
+        <a href="index.html#news">KEPCO NEWS</a>
+        <a href="travel.html">TRAVEL</a>
+        <a href="index.html#life">LIFE &amp; CULTURE</a>
+      </nav>
+    </div>
+  </div>
+
+
+
+<main class="travel-main" id="travel-content"><article>
+<header class="trip-cover"><p class="trip-kicker">TWIN TRIP <span>KEPCO JANUARY 2027</span></p><h1>해가 떠오르고,<br>땅이 끝나는 곳, 그곳에 서다</h1><p class="trip-subtitle">울산 간절곶 <span>vs</span> 포르투갈 호카곶</p>
+<div class="trip-dual"><a href="#ulsan" class="trip-destination"><img src="assets/travel/photo-2.jpg" alt="울산 간절곶 해안 위로 떠오르는 아침 해" width="682" height="896"><span><small>울산 간절곶</small><strong>ULSAN</strong></span></a><a href="#portugal" class="trip-destination"><img src="assets/travel/photo-1.jpg" alt="밤바다 절벽 위에 불을 밝힌 호카곶 등대" width="387" height="510"><span><small>포르투갈 호카곶</small><strong>PORTUGAL</strong></span></a><span class="trip-vs" aria-hidden="true">VS</span></div></header>
+<div class="trip-intro trip-width"><p class="trip-intro-label">Twin Trip<br><span>끝과 시작 사이</span></p><p>한 대륙의 동쪽 끝과 서쪽 끝. 1만 km 넘게 떨어진 두 곶은 서로를 모른 채 저마다의 바다를 향해 서 있다. 한 해의 첫날, 한쪽에서 새해의 해가 떠오를 때 다른 한쪽에서는 아직 지난해의 밤이 흐른다.<br><strong>끝과 시작이 맞닿은 두 곳으로 새해 첫 여행을 떠나보자.</strong></p></div>
+<section class="destination-section trip-width" id="ulsan"><aside class="destination-side"><p class="trip-time">07:31<span>AM · SUNRISE</span></p><p class="destination-label">ULSAN · 울산 간절곶</p><h2>간절곶, 한반도의<br>아침은 여기서 시작된다</h2>
+<div class="travel-info"><h3>어떻게 갈까?</h3><dl><div><dt>항공</dt><dd><strong>1hr</strong>김포공항 → 울산공항</dd></div><div><dt>철도</dt><dd><strong>2hr 10min</strong>서울역 → KTX 울산역</dd></div><div><dt>현지 이동</dt><dd><strong>50min</strong>울산공항·울산역 → 간절곶</dd></div></dl><p><span>Check</span>해맞이 기간(12월 31일~1월 1일)에는 교통 통제와 임시 셔틀버스 운행을 미리 확인하자.</p></div></aside>
+<div class="destination-body"><p>1월 1일 오전 7시 31분 무렵, 울산 울주군의 간절곶 바다 위로 해가 고개를 내민다. 포항 호미곶보다 1분 이른, 한반도 육지에서 가장 먼저 맞는 새해 첫 해다. 먼바다의 뱃사람들 눈에 이 땅이 긴 간짓대(대나무 장대)처럼 뻗어 보였다 해서 붙은 이름이지만, 요즘은 우리말 ‘간절하다’와 소리가 같아 간절한 소망을 비는 곳으로 더 자주 불린다.</p><p>1920년 처음 불을 밝힌 하얀 등대 아래로 잔디 언덕이 바다까지 이어지고, 언덕 끝에는 실제로 우편물을 거둬 가는 높이 5m의 빨간 ‘소망우체통’이 서 있다. 바닷가 바위에는 왜국으로 떠난 남편을 기다리다 망부석이 되었다는 신라 충신 박제상의 아내와 두 딸의 모녀상이 수평선을 바라본다. 공기가 차고 맑은 겨울에는 해가 그리스 문자 Ω를 닮은 ‘오메가 일출’이 나타나기도 하니, 인파가 빠진 1월 평일 새벽에 다시 찾아도 좋다.</p>
+<figure class="trip-gallery" data-gallery="ulsan"><div class="gallery-frame"><img src="assets/travel/photo-7.jpg" width="1416" height="1130" alt="간절곶 표지석과 푸른 바다" loading="lazy"><button type="button" class="gallery-prev" aria-label="울산 이전 사진"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 4-8 8 8 8"/></svg></button><button type="button" class="gallery-next" aria-label="울산 다음 사진"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 4 8 8-8 8"/></svg></button></div><figcaption><span class="gallery-caption">울산 간절곶</span><span class="gallery-count">01 / 03</span></figcaption><span class="sr-only gallery-status" aria-live="polite"></span></figure>
+<h3>바다를 따라 북쪽으로</h3><p>해를 맞았다면 바다를 따라 북쪽으로 걸음을 옮겨 보자. 차로 10분 남짓이면 닿는 진하해수욕장 앞바다에는 작은 무인도 명선도가 떠 있다. 물이 빠지면 모래톱이 드러나 걸어서 섬에 닿을 수 있고, 해송이 자란 섬 뒤로 해가 떠오르는 장면은 사진가들이 아끼는 구도다.</p><p>해변 뒤 언덕에는 임진왜란 때 왜장 가토 기요마사가 쌓은 서생포왜성이 남아 있다. 아픈 역사의 흔적이지만 지금은 성벽을 따라 걷는 조용한 산책길이 되어, 오르면 진하 바다와 회야강 하구가 한눈에 들어온다. 해안을 따라 50분쯤 더 올라가면 울산 동구의 대왕암공원이다. 1만 5,000그루 해송 숲길 끝, 신라 문무대왕의 왕비가 죽어서도 나라를 지키는 용이 되어 잠겼다는 전설의 바위 대왕암이 파도를 받아 낸다. 중간 기둥 하나 없이 바다 위 협곡을 잇는 303m 출렁다리를 건너면 울산의 바다가 발아래로 펼쳐진다.</p>
+<h3>고래의 포구에서 정원의 도시로</h3><p>울산의 또 다른 얼굴은 도시 안에 있다. 장생포는 1986년 상업 포경이 금지되기 전까지 고래잡이로 번성했던 포구다. 고래문화마을은 1960~70년대 마을의 골목과 가게를 되살려, 바다를 터전 삼아 살아온 사람들의 시간을 걸으며 엿보게 한다.</p><p>공업 도시 울산이 어떻게 바뀌어 왔는지는 태화강에서 가장 잘 보인다. 한때 오염된 강의 대명사였던 태화강은 수십 년에 걸쳐 되살아나 2019년 대한민국 두 번째 국가정원이 되었다. 강변을 따라 길게 이어진 십리대숲은 낮에는 바람에 댓잎 부딪는 소리로, 해가 지면 은은한 조명이 켜진 ‘은하수길’로 여행자를 맞는다. 새해 첫 해를 본 하루를, 대숲 사이로 별빛 같은 조명을 따라 걸으며 마무리해 보는 것도 좋겠다.</p>
+<div class="trip-photo-pair"><figure><img src="assets/travel/photo-6.jpg" alt="장생포 고래문화마을의 고래 조형물" loading="lazy"><figcaption>장생포 고래문화마을</figcaption></figure><figure><img src="assets/travel/bamboo.jpg" alt="태화강 국가정원 십리대숲의 산책길" loading="lazy"><figcaption>태화강 국가정원 십리대숲</figcaption></figure></div></div></section>
+<section class="destination-section trip-width" id="portugal"><aside class="destination-side"><p class="trip-time">17:30<span>PM · SUNSET</span></p><p class="destination-label">PORTUGAL · 포르투갈 호카곶</p><h2>호카곶, 땅이 끝나고<br>바다가 시작되는 곳</h2>
+<div class="travel-info"><h3>어떻게 갈까?</h3><dl><div><dt>항공</dt><dd><strong>15–17hr</strong>인천 → 리스본<br>유럽 도시 1회 경유 기준</dd></div><div><dt>철도</dt><dd><strong>40min</strong>리스본 호시우역 → 신트라역</dd></div><div><dt>현지 이동</dt><dd><strong>40min</strong>신트라역 → 호카곶<br>1253번 버스</dd></div></dl><p><span>Check</span>1월 기온은 8~15℃로 온화하지만 곶 위 바닷바람이 거세 방풍 외투가 필요하다.</p></div></aside>
+<div class="destination-body"><p>간절곶에 새해 첫 해가 떠오르는 순간, 포르투갈은 아직 12월 31일 밤 10시 반이다. 9시간의 시차를 건너 유라시아 대륙의 반대편 끝으로 가면 호카곶(Cabo da Roca)이 있다. 해발 140m 절벽 아래로 대서양이 쉼 없이 밀려와 부서지고, 이보다 서쪽에는 더 이상 대륙의 땅이 없다. 절벽 위 십자가 기념비에는 포르투갈의 국민 시인 루이스 드 카몽이스가 대항해시대를 노래한 서사시 『우스 루지아다스』의 한 구절이 새겨져 있다.</p><blockquote>“여기, 땅이 끝나고<br>바다가 시작되는 곳.”</blockquote><p>이곳이 가장 아름다운 시간은 해 질 녘이다. 1월에는 오후 5시 반 무렵 해가 대서양 아래로 내려앉으며, 1772년 처음 불을 밝힌 붉은 지붕의 등대와 절벽 능선을 금빛 실루엣으로 물들인다. 관광안내소에서는 이름과 날짜를 적고 밀랍 봉인을 찍은 ‘유럽 대륙 최서단 방문 증명서’를 발급해 준다. 한반도의 첫 해를 본 사람이 대륙의 마지막 해까지 보았다는 증명이라면, 이보다 특별한 새해 기념품도 없다.</p>
+<figure class="trip-gallery" data-gallery="portugal"><div class="gallery-frame"><img src="assets/travel/photo-0.jpg" width="1654" height="1280" alt="노란 외벽과 붉은 탑이 어우러진 신트라 페나 궁전" loading="lazy"><button type="button" class="gallery-prev" aria-label="포르투갈 이전 사진"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 4-8 8 8 8"/></svg></button><button type="button" class="gallery-next" aria-label="포르투갈 다음 사진"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 4 8 8-8 8"/></svg></button></div><figcaption><span class="gallery-caption">신트라 페나 궁전</span><span class="gallery-count">01 / 03</span></figcaption><span class="sr-only gallery-status" aria-live="polite"></span></figure>
+<h3>숲의 궁전, 바다의 동굴</h3><p>호카곶을 사이에 두고 북쪽에는 숲이, 남쪽에는 해안이 있다. 버스로 40분 거리의 신트라는 1995년 도시 전체가 유네스코 세계유산(문화경관)에 오른 숲속의 왕실 휴양지다. 산꼭대기에는 19세기 페르난두 2세가 지은 페나 궁전이 노랑과 빨강의 외벽을 두르고 동화 속 성처럼 서 있고, 능선을 따라 이어진 무어인의 성에 오르면 신트라의 숲 너머로 대서양까지 내려다보인다.</p><p>헤갈레이라 별장의 깊이 27m ‘입문의 우물’은 나선 계단을 따라 땅속으로 내려가며 둥근 하늘을 올려다보는 곳으로, 여행자들의 인증 사진 속 단골 장면이다. 1월의 신트라는 안개가 잦은데, 오히려 그 안개 덕분에 성과 숲이 한층 신비롭다. 호카곶에서 남쪽으로 내려가면 우아한 해변 도시 카스카이스가 나온다. 파도가 바위 동굴을 때리며 굉음을 내는 ‘지옥의 입(Boca do Inferno)’에서는 이름만큼 거친 대서양을 실감할 수 있다.</p>
+<div class="trip-photo-pair"><figure><img src="assets/travel/photo-8.jpg" alt="호카곶 절벽 위 십자가 기념비" loading="lazy"><figcaption>호카곶 십자가 기념비</figcaption></figure><figure><img src="assets/travel/photo-4.jpg" alt="헤갈레이라 별장의 나선형 입문의 우물" loading="lazy"><figcaption>헤갈레이라 별장 ‘입문의 우물’</figcaption></figure></div>
+<h3>땅끝에서 떠난 배들의 도시</h3><p>여정의 끝은 땅끝에서 떠난 배들의 출발점, 리스본이다. 테주강이 바다로 나가는 어귀의 벨렝 지구에는 엔히크 왕자 서거 500주년을 기려 세운 발견기념비와 16세기 요새 벨렝탑, 바스쿠 다 가마가 잠든 제로니무스 수도원이 모여 있다. 1837년부터 같은 비법으로 굽는다는 ‘파스테이스 드 벨렝’의 따뜻한 에그타르트 한 입은 이 거리의 오랜 의식이다.</p><p>구시가로 올라가면 노란 28번 트램이 좁은 언덕 골목을 오르내리고, 해가 지면 알파마의 작은 식당에서 파두가 흘러나온다. 2011년 유네스코 인류무형유산에 오른 이 노래의 정서는 ‘사우다드(saudade)’, 떠나간 것과 아직 오지 않은 것을 함께 그리워하는 마음이다. 바다 너머를 꿈꾸던 사람들과 그들을 기다리던 사람들의 마음이 오늘의 리스본 골목에 그대로 배어 있다.</p><p>리스본 호시우역에서 기차로 신트라까지 약 40분, 신트라역에서 1253번 버스를 타면 호카곶까지 약 40분 걸린다. 카스카이스에서는 1624번 버스가 다닌다. 1월 리스본은 8~15℃ 안팎으로 온화하지만 곶 위의 바닷바람은 매서우니 방풍 외투를 챙기자.</p></div></section>
+<section class="twin-routes trip-width" id="routes"><p class="route-kicker">두 개의 여행, 나란히 걸어보기</p><h2>Twin Route<span>.</span></h2><div class="route-columns">
+<div class="route-column"><img src="assets/travel/photo-5.jpg" alt="울산 해안과 여행지를 그린 지도" width="1536" height="1024" loading="lazy"><h3>ULSAN</h3><ol><li><strong>간절곶</strong><p>한반도 육지에서 가장 먼저 새해 첫 해를 맞는 곳</p></li><li><strong>진하해수욕장·명선도</strong><p>물이 빠지면 걸어서 닿는 작은 무인도</p></li><li><strong>서생포왜성</strong><p>진하 바다와 회야강 하구가 내려다보이는 산책길</p></li><li><strong>대왕암공원</strong><p>해송 숲길과 303m 출렁다리</p></li><li><strong>장생포 고래문화마을</strong><p>1960~70년대 포구 마을의 골목과 가게</p></li><li><strong>태화강 국가정원</strong><p>밤이면 조명이 켜지는 십리대숲 은하수길</p></li></ol></div><div class="route-column"><img src="assets/travel/photo-3.jpg" alt="호카곶과 신트라·리스본 주변 여행지를 그린 지도" width="1536" height="1024" loading="lazy"><h3>PORTUGAL</h3><ol><li><strong>호카곶</strong><p>유라시아 대륙 최서단, 해 질 녘의 등대</p></li><li><strong>신트라 페나 궁전</strong><p>노랑과 빨강 외벽의 19세기 궁전</p></li><li><strong>무어인의 성</strong><p>숲 너머 대서양까지 보이는 능선</p></li><li><strong>헤갈레이라 별장</strong><p>깊이 27m 나선 계단 ‘입문의 우물’</p></li><li><strong>카스카이스</strong><p>파도가 바위 동굴을 때리는 ‘지옥의 입’</p></li><li><strong>리스본 벨렝·알파마</strong><p>에그타르트, 28번 트램, 파두</p></li></ol></div></div></section>
+<div class="trip-end trip-width"><p>본문·이동 시간·교통 정보는 제공된 2027년 1월호 원고 기준입니다. 실제 여행 전 운항·운행 정보와 현지 통제를 확인하세요.</p><nav aria-label="기사 이동"><a href="index.html#travel">← TRAVEL 목록으로</a><a href="#travel-content">맨 위로 ↑</a></nav></div>
+</article></main><footer class="trip-footer"><a class="mark mark-gray" href="index.html" aria-label="KEPCO 웹진 홈"></a><p>KEPCO Web Magazine © 2026 KEPCO. All Rights Reserved.</p></footer><script src="js/travel.js?v=6"></script></body></html>

@@ -1,0 +1,1 @@
+Built-in image_gen, generic illustrative photograph, NOT a verified photograph of Yeonpyeong station. Prompt: modest Korean island diesel engine-generator hall, medium-speed engine blocks and alternators, exhaust piping, yellow maintenance crane and safety lines, natural documentary realism, no servers/gas turbines/text/logos. Output site-diesel.jpg. Original site.jpg preserved.

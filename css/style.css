@@ -1,0 +1,2443 @@
+/* KEPCO 웹진 Vol.643
+   기준 화면 1920×5512. 왼쪽 레일 480px, 본문 좌우 여백 60/36,
+   브랜드 그린 #15a87e, 헤더 #1a1a1a, 민트 #eaf6f1, 강조 노랑 #ffeb5a.
+   본문 서체는 피그마에서 윤곽으로 깨져 있어 Pretendard로 맞춘다. */
+
+:root {
+  --green: #15a87e;
+  --ink: #141414;
+  --header: #1a1a1a;
+  --muted: #8a8a8a;
+  --line: #e4e4e4;
+  --mint: #eaf6f1;
+  --yellow: #ffeb5a;
+  --paper: #ffffff;
+  --image-radius: 16px;
+  --rail: 25%;
+  --header-h: 70px;
+  --pad-l: 60px;
+  --pad-r: 36px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background: #f3f3f3;
+  font-family: Pretendard, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+button, a { font-family: inherit; }
+
+button {
+  cursor: pointer;
+  color: inherit;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip {
+  position: absolute;
+  left: 16px;
+  top: -40px;
+  background: #fff;
+  color: var(--ink);
+  padding: 8px 12px;
+  z-index: 80;
+}
+
+.skip:focus { top: 12px; }
+
+:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 3px;
+}
+
+/* 워드마크는 원본 로고를 마스크로 칠한다 */
+.mark {
+  display: inline-block;
+  width: 156px;
+  height: 32px;
+  background: var(--green);
+  -webkit-mask: url("../assets/kepco-mark.png") center / contain no-repeat;
+  mask: url("../assets/kepco-mark.png") center / contain no-repeat;
+}
+
+.mark-dark { background: #111; width: 132px; height: 28px; }
+.mark-gray { background: #b5b5b5; width: 188px; height: 40px; }
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  height: 26px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: var(--green);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.more {
+  display: inline-flex;
+  align-items: center;
+  height: 36px;
+  padding: 0 16px;
+  border: 1px solid #c8c8c8;
+  border-radius: 999px;
+  background: #fff;
+  color: #222;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.more:hover { border-color: var(--green); color: #0c7d5c; }
+
+.more-light {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.8);
+  color: #fff;
+}
+
+.more-light:hover { background: rgba(255, 255, 255, 0.12); color: #fff; }
+
+/* 헤더. 로고~메뉴 사이가 화면 중앙에 오도록 1276px 밴드 */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  height: var(--header-h);
+  background: var(--header);
+}
+
+.topbar-inner {
+  height: 100%;
+  width: min(1276px, calc(100% - 48px));
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+}
+
+.brand-meta {
+  margin: 0;
+  color: var(--green);
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  line-height: 1.35;
+}
+
+.menu-btn {
+  width: 44px;
+  height: 44px;
+  border: 0;
+  background: transparent;
+  display: grid;
+  place-items: center;
+}
+
+.menu-icon {
+  width: 22px;
+  display: grid;
+  gap: 5px;
+}
+
+.menu-icon i {
+  display: block;
+  height: 2px;
+  background: var(--green);
+}
+
+.sheet {
+  max-width: 1920px;
+  margin: 0 auto;
+  background: var(--paper);
+  display: grid;
+  grid-template-columns: minmax(200px, var(--rail)) minmax(0, 1fr);
+  align-items: stretch;
+}
+
+.rail {
+  background: var(--green);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 52px 24px 80px;
+}
+
+.rail-hand {
+  width: min(340px, 78%);
+  height: auto;
+  margin-top: 28px;
+}
+
+.rail-para {
+  width: min(250px, 62%);
+  height: auto;
+  margin-top: 56px;
+}
+
+.rail .mark-dark { margin-top: 168px; }
+
+main {
+  padding: 42px var(--pad-r) 0 var(--pad-l);
+  min-width: 0;
+}
+
+.issue {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  margin: 0 0 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #dcdcdc;
+}
+
+.issue p { margin: 0; }
+
+.issue-vol {
+  color: var(--green);
+  font-size: 13px;
+  font-weight: 650;
+  letter-spacing: 0.14em;
+}
+
+.issue-theme {
+  color: #8d8d8d;
+  font-size: 14px;
+}
+
+.issue-theme span { margin-left: 6px; }
+
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-shot { display: block; overflow: hidden; }
+
+.hero img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1344 / 476;
+  object-fit: cover;
+}
+
+.hero-copy {
+  position: absolute;
+  left: 48px;
+  top: 46px;
+  right: 42%;
+  color: #fff;
+}
+
+.eyebrow {
+  margin: 0 0 14px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+}
+
+.hero h1 {
+  margin: 22px 0 28px;
+  font-size: clamp(39.468px, 3.1878vw, 54.648px);
+  font-weight: 700;
+  line-height: 1.45;
+  letter-spacing: -0.03em;
+}
+
+.block { margin-top: 92px; }
+
+.section-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.section-head h2 {
+  margin: 0;
+  font-size: clamp(22px, 1.7vw, 28px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.section-head span {
+  color: #9a9a9a;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.section-head i {
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+
+.focus {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.85fr);
+  gap: 42px;
+  align-items: start;
+}
+
+.voice-media {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  overflow: hidden;
+}
+
+.voice-media img {
+  width: 100%;
+  aspect-ratio: 760 / 460;
+  object-fit: cover;
+}
+
+/* 재생 버튼은 사진에 이미 있다. 포인터만 버튼 전체로 둔다. */
+
+.voice h3 {
+  margin: 14px 0 12px;
+  font-size: clamp(26px, 2vw, 34px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.voice .badge { margin-top: 16px; }
+
+.note {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 0 16px;
+  padding: 7px 10px;
+  background: var(--yellow);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.tri {
+  width: 0;
+  height: 0;
+  margin-top: 4px;
+  border-style: solid;
+  border-width: 5px 0 5px 8px;
+  border-color: transparent transparent transparent #111;
+  flex: none;
+}
+
+.focus-list { padding-top: 4px; }
+
+.focus-item + .focus-item { border-top: 1px solid #ececec; }
+
+.focus-item button {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 132px minmax(0, 1fr);
+  gap: 16px;
+  align-items: center;
+  padding: 16px 0;
+  border: 0;
+  background: none;
+  text-align: left;
+}
+
+.focus-item img {
+  width: 100%;
+  aspect-ratio: 220 / 160;
+  object-fit: cover;
+}
+
+.focus-item strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 18px;
+  font-weight: 750;
+  letter-spacing: -0.03em;
+  line-height: 1.4;
+}
+
+.focus-item button:hover strong,
+.card button:hover strong { color: #0c7d5c; }
+
+.perspective {
+  margin-top: 88px;
+  background: var(--mint);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.92fr);
+  gap: 20px;
+  align-items: center;
+  padding: 48px 0 48px 52px;
+}
+
+.quote {
+  margin: 0 0 8px;
+  color: var(--green);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 72px;
+  line-height: 0.8;
+  font-weight: 700;
+}
+
+.perspective h2 {
+  margin: 16px 0 12px;
+  font-size: clamp(26px, 2vw, 34px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.4;
+}
+
+.byline {
+  margin: 0 0 22px;
+  color: #8d8d8d;
+  font-size: 14px;
+}
+
+.perspective img {
+  width: 100%;
+  height: auto;
+  justify-self: end;
+}
+
+.duo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+}
+
+.card button {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  text-align: left;
+}
+
+.card img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+/* 사진만 잘라 확대되도록 글과 배지는 프레임 밖에 둔다 */
+.shot {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+}
+
+.card .shot { margin-bottom: 8px; }
+
+.life .card img {
+  aspect-ratio: 320 / 360;
+  object-fit: cover;
+  background: #fff;
+}
+
+.card strong {
+  font-size: 20px;
+  font-weight: 750;
+  letter-spacing: -0.03em;
+  line-height: 1.4;
+}
+
+.card em {
+  color: #8d8d8d;
+  font-style: normal;
+  font-size: 13px;
+}
+
+.newsbar {
+  position: relative;
+  margin-top: 56px;
+  min-height: 92px;
+  padding: 18px 28px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: var(--ink);
+  color: #fff;
+  text-decoration: none;
+}
+
+.newsbar:hover { background: #000; }
+
+.newsbar strong {
+  color: var(--green);
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.news-page {
+  color: #8d8d8d;
+  font-size: 14px;
+}
+
+.news-title {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.news-arrow {
+  margin-left: auto;
+  font-size: 20px;
+  transition: transform 0.25s ease;
+}
+
+.newsbar:hover .news-arrow { transform: translateX(6px); }
+
+.travel-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.travel-head h3 {
+  margin: 14px 0 0;
+  font-size: clamp(26px, 2.2vw, 36px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.35;
+}
+
+.twin-photos {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 28px;
+}
+
+.twin figure { margin: 0; }
+
+.twin button {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  overflow: hidden;
+}
+
+.twin img {
+  width: 100%;
+  height: auto;
+}
+
+.twin-captions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 28px;
+  margin-top: 14px;
+}
+
+.twin-captions p {
+  margin: 0;
+  font-size: 16px;
+}
+
+.twin-captions span {
+  margin-left: 8px;
+  color: #9a9a9a;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+}
+
+/* 원본은 사진 이음 위에 원 하나. 지름 96px, 사진 세로 중앙 */
+.vs {
+  position: absolute;
+  grid-column: 1 / -1;
+  grid-row: 1;
+  left: 50%;
+  top: 50%;
+  z-index: 2;
+  width: 96px;
+  height: 96px;
+  margin: 0;
+  padding: 0;
+  border-radius: 50%;
+  background: var(--green);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translate(-50%, -50%);
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  pointer-events: none;
+}
+
+.quad {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.colophon {
+  margin-top: 96px;
+  padding: 36px 0 64px;
+  border-top: 1px solid #cfcfcf;
+  text-align: center;
+}
+
+.colophon .mark { margin: 28px auto 16px; }
+
+.colophon p {
+  margin: 0;
+  color: #b0b0b0;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+}
+
+/* 메뉴 */
+.nav-drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.nav-drawer[hidden] { display: none; }
+
+.nav-panel {
+  margin-left: auto;
+  width: min(420px, 100%);
+  height: 100%;
+  background: var(--header);
+  color: #fff;
+  padding: 28px 32px;
+}
+
+.nav-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.nav-head p {
+  margin: 0;
+  color: var(--green);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.nav-close {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: transparent;
+  color: #fff;
+  border-radius: 999px;
+  height: 34px;
+  padding: 0 14px;
+}
+
+.nav-panel nav {
+  display: grid;
+  gap: 6px;
+}
+
+.nav-panel a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.nav-panel a:hover { color: var(--green); }
+
+/* 기사 레이어 */
+.story {
+  width: min(760px, calc(100% - 32px));
+  border: 0;
+  padding: 0;
+  background: #fff;
+  color: var(--ink);
+}
+
+.story::backdrop { background: rgba(0, 0, 0, 0.55); }
+
+.story article { padding: 28px 28px 36px; }
+
+.story-close {
+  float: right;
+  border: 1px solid #ccc;
+  background: #fff;
+  border-radius: 999px;
+  height: 34px;
+  padding: 0 14px;
+}
+
+.story-visual {
+  width: 100%;
+  max-height: 360px;
+  object-fit: cover;
+  margin: 12px 0 18px;
+  clear: both;
+}
+
+.story h3 {
+  margin: 14px 0 8px;
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.35;
+}
+
+.story-by { margin: 0 0 12px; color: var(--muted); }
+
+.story-body p { margin: 0 0 12px; font-size: 16px; line-height: 1.75; }
+
+section, .newsbar { scroll-margin-top: 86px; }
+
+/* 손글씨·형광펜. 본문 서체는 유지하고 포인트 구간에만 쓴다 */
+.ink {
+  font-family: "Nanum Pen Script", cursive;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1;
+}
+
+.hl {
+  background-image: linear-gradient(#ffe56a, #ffe56a);
+  background-repeat: no-repeat;
+  background-size: 100% 0.38em;
+  background-position: 0 82%;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.hero .hl {
+  background-image: linear-gradient(rgba(255, 235, 90, 0.92), rgba(255, 235, 90, 0.92));
+}
+
+.ink-point {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  margin: 2px 0 16px;
+  color: #1a1a1a;
+  transform: rotate(-6deg);
+  transform-origin: left center;
+}
+
+.ink-point .ink {
+  font-size: 28px;
+}
+
+.ink-arrow {
+  width: 72px;
+  height: 42px;
+  flex: none;
+}
+
+.voice-extra .note { margin-bottom: 6px; }
+
+.ink-aside {
+  margin: -4px 0 16px;
+  color: #0c7d5c;
+  font-family: "Nanum Pen Script", cursive;
+  font-size: 30px;
+  transform: rotate(-3deg);
+  transform-origin: left center;
+}
+
+.ink-travel {
+  margin: 8px 0 0;
+  color: #0c7d5c;
+  font-size: 28px;
+  transform: rotate(-2deg);
+  transform-origin: left center;
+}
+
+.news-sticker {
+  position: absolute;
+  left: 156px;
+  top: -10px;
+  color: var(--yellow);
+  font-size: 26px;
+  transform: rotate(-8deg);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.badge { transform: none; }
+
+@media (max-width: 1100px) {
+  .focus,
+  .perspective,
+  .quad { grid-template-columns: 1fr 1fr; }
+
+  .perspective { padding: 36px 24px; }
+  .hero-copy { right: 28%; }
+  .rail .mark-dark { margin-top: 80px; }
+}
+
+@media (max-width: 860px) {
+  :root { --pad-l: 20px; --pad-r: 20px; }
+
+  /* 가로로 낮은 표지 사진 안에 제목이 잘리므로, 글은 사진 아래로 내린다 */
+  .hero { overflow: visible; }
+  .hero-copy {
+    position: static;
+    margin-top: 18px;
+    color: var(--ink);
+  }
+  .hero h1 { color: var(--ink); font-size: 26px; }
+  .eyebrow { color: #666; letter-spacing: 0.18em; }
+  .more-light { border-color: #c8c8c8; color: #222; background: #fff; }
+
+  .sheet { grid-template-columns: 1fr; }
+
+  .rail {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 20px;
+    gap: 12px;
+  }
+
+  .rail-hand { width: 52%; margin: 0; }
+  .rail-para { width: 34%; margin: 0; }
+  .rail .mark-dark { display: none; }
+
+  .focus,
+  .perspective,
+  .duo,
+  .quad { grid-template-columns: 1fr; }
+
+  .hero-copy {
+    left: 20px;
+    right: 20px;
+    top: 20px;
+  }
+
+  .hero h1 { font-size: 24px; }
+
+  .vs { width: 72px; height: 72px; font-size: 16px; }
+
+  .newsbar { flex-wrap: wrap; }
+  .news-arrow { margin-left: 0; }
+
+  .issue { flex-direction: column; align-items: flex-start; }
+
+  .ink-point,
+  .ink-aside,
+  .ink-travel,
+  .news-sticker { transform: none; }
+
+  .news-sticker { font-size: 22px; }
+}
+
+/* 읽은 만큼 헤더 아래에 노란 막대가 찬다 */
+.readbar {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--yellow);
+  transform: scaleX(0);
+  transform-origin: left center;
+  pointer-events: none;
+}
+
+/* KOGAS 웹진처럼 스크롤에 올라오고, 사진에 올리면 살짝 확대된다 */
+@media (prefers-reduced-motion: no-preference) {
+  .motion .rise {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 0.7, 0.2, 1);
+    transition-delay: var(--d, 0ms);
+  }
+
+  .motion .rise.in {
+    opacity: 1;
+    transform: none;
+  }
+
+  .focus-item:nth-child(2) { --d: 90ms; }
+  .focus-item:nth-child(3) { --d: 180ms; }
+  .duo .card:nth-child(2) { --d: 110ms; }
+  .quad .card:nth-child(2) { --d: 80ms; }
+  .quad .card:nth-child(3) { --d: 160ms; }
+  .quad .card:nth-child(4) { --d: 240ms; }
+  .perspective .shot { --d: 140ms; }
+
+  .motion .section-head i {
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.8s ease 0.15s;
+  }
+
+  .motion .section-head.in i { transform: scaleX(1); }
+
+  .motion .hl {
+    background-size: 0% 0.38em;
+    transition: background-size 0.55s ease 0.2s;
+  }
+
+  .motion .hero .hl { background-size: 0% 0.38em; }
+
+  .motion .rise.in .hl { background-size: 100% 0.38em; }
+
+  .motion .hero.in .hl,
+  .motion .hero-copy.in .hl { background-size: 100% 0.38em; }
+
+  .motion .ink-arrow path:first-of-type {
+    stroke-dasharray: 86;
+    stroke-dashoffset: 86;
+  }
+
+  .motion .rise.in .ink-arrow path:first-of-type {
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 0.7s ease 0.35s;
+  }
+
+  .motion .twin .vs {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.7);
+    transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) 0.15s, opacity 0.45s ease 0.15s;
+  }
+
+  .motion .twin.in .vs {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+
+  .motion .rail-para {
+    --glide-x: 24px;
+    --glide-y: 30px;
+    transform-origin: 50% 24%;
+    animation: paraglider-glide 8s ease-in-out infinite;
+  }
+
+  .shot img,
+  .voice-media img,
+  .twin-photos img {
+    transition: transform 0.55s cubic-bezier(0.22, 0.7, 0.2, 1);
+  }
+
+  .shot:hover img,
+  .voice-media:hover img,
+  .twin-photos button:hover img,
+  .card:hover .shot img,
+  .focus-item:hover .shot img {
+    transform: scale(1.06);
+  }
+
+  .motion .card.rise.in:hover { transform: translateY(-6px); }
+}
+
+@keyframes hero-drift {
+  from { transform: scale(1.04) translate3d(0, 0, 0); }
+  to { transform: scale(1.08) translate3d(-1.2%, -1%, 0); }
+}
+
+/* 큰 호를 그리며 활공하도록 이동과 기울기를 같은 주기로 연결한다. */
+@keyframes paraglider-glide {
+  0%, 100% { transform: translate3d(calc(var(--glide-x) * -1), 6px, 0) rotate(-7deg); }
+  25% { transform: translate3d(0, calc(var(--glide-y) * -1), 0) rotate(-2deg); }
+  50% { transform: translate3d(var(--glide-x), -10px, 0) rotate(8deg); }
+  75% { transform: translate3d(4px, 14px, 0) rotate(3deg); }
+}
+
+@media (max-width: 860px) and (prefers-reduced-motion: no-preference) {
+  .motion .rail-para { --glide-x: 10px; --glide-y: 14px; animation-duration: 7s; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .readbar { display: none; }
+}
+
+@media (scripting: none) {
+  .rise { opacity: 1; transform: none; }
+}
+
+/* Editorial motion — 기존 지면 구성 위에 얹는 타이포그래피와 인터랙션 */
+:root { --ease-out: cubic-bezier(.22, 1, .36, 1); }
+.section-head { counter-increment: editorial-section; gap: 14px; }
+main { counter-reset: editorial-section; }
+.section-head::before {
+  content: "0" counter(editorial-section);
+  font-size: 38px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -.06em;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--green);
+}
+.section-head h2 { letter-spacing: -.045em; }
+.section-head i { background: var(--ink); opacity: .24; }
+.rail-edition {
+  margin-top: 64px;
+  align-self: center;
+  font-size: clamp(16px, 1.65vw, 30px);
+  font-weight: 850;
+  line-height: 1.1;
+  letter-spacing: -.055em;
+  color: #102c23;
+  transform: rotate(-4deg);
+}
+.rail-edition span { font-size: .48em; letter-spacing: .02em; }
+.rail .mark-dark { margin-top: 70px; }
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(5, 28, 42, .42), transparent 76%);
+  pointer-events: none;
+}
+.hero-copy { z-index: 1; right: 20%; }
+.title-line { display: block; }
+.hero h1 { font-weight: 600; letter-spacing: -.055em; }
+.hero .eyebrow { display: flex; align-items: center; gap: 10px; }
+.hero .eyebrow::before { content: ""; width: 26px; height: 1px; background: currentColor; }
+.badge { border-radius: 5px; padding: 0 9px; letter-spacing: .025em; }
+.more { min-height: 40px; gap: 16px; transition: background .25s, color .25s, border-color .25s, transform .25s; }
+.more:hover { background: var(--ink); border-color: var(--ink); color: white; transform: translateX(3px); }
+.more-light:hover { background: white; border-color: white; color: var(--ink); }
+.voice-extra { padding: 4px 0; }
+.voice-extra .note {
+  display: block;
+  padding: 5px 10px;
+  background: linear-gradient(transparent 8%, var(--yellow) 8%, var(--yellow) 92%, transparent 92%);
+  transform: rotate(-1.5deg);
+  box-decoration-break: clone;
+}
+.voice-extra .tri { display: inline-block; margin-right: 6px; }
+.ink-point { margin-top: 10px; }
+.perspective { position: relative; border-top: 2px solid var(--green); }
+.perspective .quote { font-size: 92px; }
+.perspective .ink-aside { width: fit-content; padding: 0 6px; border-bottom: 2px solid var(--green); }
+.card strong, .focus-item strong { transition: color .25s; }
+.card .shot, .voice-media, .focus-item .shot, .twin-photos button { position: relative; }
+.card .shot::after, .voice-media::after, .focus-item .shot::after, .twin-photos button::after {
+  content: "↗";
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--yellow);
+  color: var(--ink);
+  font-size: 23px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .25s, transform .35s var(--ease-out);
+  pointer-events: none;
+}
+.card button:is(:hover, :focus-visible) .shot::after,
+.voice-media:is(:hover, :focus-visible)::after,
+.focus-item button:is(:hover, :focus-visible) .shot::after,
+.twin-photos button:is(:hover, :focus-visible)::after { opacity: 1; transform: none; }
+.focus-item .shot::after { width: 28px; height: 28px; font-size: 18px; right: 6px; bottom: 6px; }
+.newsbar { border-left: 4px solid var(--green); }
+.news-sticker { background: var(--yellow); color: var(--ink); padding: 3px 9px; top: -15px; }
+.travel-head .ink-travel { width: fit-content; border-bottom: 2px solid var(--green); padding-bottom: 4px; }
+.vs { border: 5px solid white; box-shadow: 0 0 0 1px var(--green); }
+.colophon { border-top: 2px solid var(--ink); }
+.nav-panel { overflow-y: auto; }
+.nav-panel a { transition: padding-left .25s, color .25s; }
+.nav-panel a:hover { padding-left: 8px; }
+body.menu-open { overflow: hidden; }
+@media (prefers-reduced-motion: no-preference) {
+  .motion .hero .title-line {
+    opacity: 0;
+    filter: blur(12px);
+    transform: translateY(8px);
+    transition: opacity 3s ease-in-out, filter 3s ease-in-out, transform 3s ease-in-out;
+    transition-delay: 0s;
+  }
+  .motion .hero-copy.in .title-line { opacity: 1; filter: blur(0); transform: none; }
+  .motion .hero-copy.in .title-line:nth-child(2) { transition-delay: .5s; }
+  .motion .hl { transition: background-size .8s var(--ease-out) .4s; }
+  .motion .card.rise.in:hover { transform: none; }
+}
+@media (max-width: 1400px) and (min-width: 861px) {
+  .hero img { min-height: 320px; }
+  .hero-copy { left: 28px; top: 28px; right: 8%; }
+  .focus { grid-template-columns: 1fr; gap: 24px; }
+  .focus-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+  .focus-item + .focus-item { border-top: 0; }
+  .focus-item button { grid-template-columns: 1fr; padding: 0; gap: 12px; }
+  .focus-item strong { font-size: 17px; }
+  .focus-item .badge { font-size: 10px; }
+}
+@media (max-width: 1100px) and (min-width: 861px) {
+  :root { --rail: 21%; --pad-l: 32px; --pad-r: 28px; }
+  .perspective { grid-template-columns: 1fr; }
+  .perspective .shot { max-height: 320px; }
+  .perspective img { height: 320px; object-fit: cover; }
+  .rail-edition { font-size: 19px; }
+}
+@media (max-width: 860px) {
+  .rail-edition { display: none; }
+  .hero::after { display: none; }
+  .hero-copy { margin-top: 24px; }
+  .hero h1 { font-size: clamp(29.9px, 5.98vw, 43.7px); margin: 18px 0 24px; }
+  .section-head { gap: 9px; }
+  .section-head::before { font-size: 30px; }
+  .section-head h2 { font-size: clamp(18px, 3.5vw, 25px); }
+  .section-head span { font-size: 12px; }
+  .block { margin-top: 64px; }
+  .focus { gap: 30px; }
+  .perspective { margin-top: 64px; }
+  .quad { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 18px; }
+  .life .card strong { font-size: 18px; }
+  .news-sticker { top: -14px; left: 150px; }
+  .voice-extra .note { transform: none; }
+}
+@media (max-width: 480px) {
+  .brand .mark { width: 126px; }
+  .brand { gap: 10px; }
+  .brand-meta { font-size: 10px; }
+  .section-head span { display: none; }
+  .focus-item button { grid-template-columns: 108px minmax(0, 1fr); gap: 12px; }
+  .focus-item strong { font-size: 17px; }
+  .focus-item .badge { font-size: 10px; }
+  .perspective { padding: 28px 20px; }
+  .perspective h2 { font-size: 25px; }
+  .travel-head { align-items: flex-start; flex-direction: column; }
+  .twin-photos, .twin-captions { column-gap: 12px; }
+  .vs { width: 48px; height: 48px; border-width: 3px; font-size: 12px; }
+  .twin-captions p { font-size: 14px; }
+  .twin-captions span { display: block; margin: 3px 0 0; font-size: 9px; letter-spacing: .02em; }
+  .quad { gap: 26px 14px; }
+  .life .card strong { font-size: 16px; }
+  .life .badge { font-size: 9px; padding: 0 7px; height: 23px; }
+  .colophon p { font-size: 11px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+
+/* 확대되는 이미지도 둥근 프레임 안에서 잘리도록 래퍼에 적용한다. */
+.shot,
+.voice-media,
+.twin-photos button,
+.story-visual {
+  border-radius: var(--image-radius);
+}
+
+.hero::after { border-radius: var(--image-radius); }
+
+@media (max-width: 860px) {
+  :root { --image-radius: 12px; }
+}
+
+/* 데스크톱 표지는 왼쪽 녹색 레일에 붙이고 오른쪽 라운드만 유지한다. */
+@media (min-width: 861px) {
+  .hero { margin-left: calc(-1 * var(--pad-l)); }
+  .hero-shot,
+  .hero::after { border-radius: 0 var(--image-radius) var(--image-radius) 0; }
+}
+
+.hero-shot { position: relative; }
+.hero .hero-shot img { transform: none; animation: none; }
+
+/* FOCUS: 사진은 수평 이동, 아래 설명은 현재 기사와 함께 갱신한다. */
+.focus-carousel { min-width: 0; }
+.focus-stage { position: relative; }
+.focus-viewport { overflow: hidden; border-radius: var(--image-radius); }
+.focus-track { display: flex; transition: transform .65s cubic-bezier(.22,.7,.2,1); }
+.focus-track.no-transition { transition: none; }
+.focus-track .focus-slide { flex: 0 0 100%; min-width: 0; border-radius: 0; }
+.focus-track .focus-slide img { aspect-ratio: 760 / 460; width: 100%; object-fit: cover; }
+.focus-track .focus-slide:hover img { transform: none; }
+.focus-arrow {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 46px; height: 46px; padding: 13px; border: 0; border-radius: 50%;
+  display: grid; place-items: center; background: rgba(242,242,242,.94);
+  color: #171717; transition: background .2s;
+}
+.focus-prev { left: 14px; }
+.focus-next { right: 14px; }
+.focus-arrow:hover { background: var(--yellow); }
+.focus-arrow svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.focus-caption { min-height: 224px; }
+.focus-caption > p:first-child { margin: 0; }
+.focus-description { color: #626262; font-size: 15px; line-height: 1.65; margin: 0 0 20px; }
+.focus-playback { display: flex; align-items: center; gap: 14px; margin-top: 18px; color: #777; font-size: 12px; }
+.focus-count { font-variant-numeric: tabular-nums; letter-spacing: .1em; }
+.focus-pause { border: 0; border-left: 1px solid #ddd; background: none; padding: 6px 12px; color: #555; font-size: 12px; min-height: 32px; }
+@media (max-width: 860px) {
+  .focus-caption { min-height: 215px; }
+  .focus-arrow { width: 40px; height: 40px; padding: 11px; }
+  .focus-prev { left: 10px; } .focus-next { right: 10px; }
+}
+
+/* FOCUS는 왼쪽 정렬하고 오른쪽에 본문 폭의 18%를 여백으로 둔다. */
+.focus { display: block; }
+.focus > .focus-list[hidden] { display: none !important; }
+.focus-carousel { width: 82%; }
+.focus-carousel .focus-viewport { aspect-ratio: 760 / 460; }
+.focus-carousel .focus-track { flex-direction: row; transition: transform .8s cubic-bezier(.25,.1,.25,1); }
+.focus-carousel .focus-track.no-transition { transition: none; }
+.focus-caption { min-height: 205px; max-width: 900px; }
+@media (max-width: 860px) {
+  .focus-carousel { width: 100%; }
+}
+
+/* FOCUS editorial refresh: 넓은 사진, 대비 있는 활자, 여백으로 구분한 정보 */
+.focus-carousel { position: relative; }
+.focus-carousel .focus-viewport { aspect-ratio: 16 / 9; border-radius: 24px; }
+.focus-carousel .focus-track { aspect-ratio: 16 / 9; }
+.focus-carousel .focus-slide { aspect-ratio: 16 / 9; }
+.focus-carousel .focus-slide img { height: 100%; aspect-ratio: 16 / 9; }
+/* 스테이지에 고정된 하단 그라데이션은 사진이 이동할 때 뒤에 회색 박스로 남는다. 사진과 함께 움직이지 않으므로 그리지 않는다. */
+.focus-stage .focus-arrow {
+  z-index: 1; top: auto; bottom: 20px; transform: none;
+  width: 48px; height: 48px; padding: 14px;
+  background: rgba(255,255,255,.9); border: 1px solid rgba(255,255,255,.65);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  transition: background .2s, color .2s;
+}
+.focus-stage .focus-prev { left: auto; right: 80px; }
+.focus-stage .focus-next { right: 22px; }
+.focus-stage .focus-arrow:hover { color: white; background: #09634b; border-color: #09634b; }
+.focus-track .focus-slide::after { display: none; }
+.focus-carousel .focus-caption {
+  display: grid; grid-template-columns: 1.3fr 1fr;
+  column-gap: 36px; row-gap: 14px;
+  max-width: none; min-height: 240px;
+  padding-top: 28px;
+}
+.focus-caption > p:first-child { grid-column: 1 / -1; }
+.focus-caption .badge {
+  margin: 0; padding: 0; height: auto; border-radius: 0; background: none;
+  color: #087354; font-size: 11px; letter-spacing: .13em;
+}
+.focus-caption .badge::before {
+  content: ""; width: 6px; height: 6px; border-radius: 50%; margin-right: 8px; background: currentColor;
+}
+.focus-carousel .focus-caption h3 {
+  grid-column: 1; grid-row: 2 / 4; margin: 0;
+  font-size: clamp(27px, 2.4vw, 42px); line-height: 1.24;
+  font-weight: 800; letter-spacing: -.055em; word-break: keep-all; overflow-wrap: anywhere;
+}
+.focus-caption .focus-description {
+  grid-column: 2; margin: 0; font-size: 22px; line-height: 1.75;
+  color: #666; word-break: keep-all; overflow-wrap: anywhere;
+}
+.focus-caption .more {
+  grid-column: 2; justify-self: start; align-self: start;
+  padding: 0 0 6px; height: auto; min-height: 36px;
+  border: 0; border-bottom: 1px solid #222; border-radius: 0;
+  background: none; font-size: 22px;
+}
+.focus-caption .more:hover { color: #087354; border-color: #087354; transform: none; }
+.focus-carousel .focus-playback {
+  border-top: 1px solid #dedede; padding-top: 14px; margin-top: 24px;
+  justify-content: space-between;
+}
+.focus-count { color: #222; font-size: 13px; letter-spacing: .13em; }
+.focus-pause { border-left: 0; border-radius: 999px; background: #f0f4f2; color: #3c5a4e; padding: 6px 14px; }
+.focus-pause:hover { background: #dfece5; }
+@media (max-width: 1100px) {
+  .focus-carousel .focus-caption { grid-template-columns: 1fr; min-height: 270px; gap: 14px; }
+  .focus-carousel .focus-caption h3 { grid-column: 1; grid-row: auto; }
+  .focus-caption .focus-description, .focus-caption .more { grid-column: 1; }
+}
+@media (max-width: 600px) {
+  .focus-carousel .focus-viewport { border-radius: 16px; }
+  .focus-stage .focus-arrow { width: 40px; height: 40px; padding: 11px; bottom: 12px; }
+  .focus-stage .focus-prev { right: 62px; } .focus-stage .focus-next { right: 12px; }
+  .focus-carousel .focus-caption { padding-top: 22px; }
+  .focus-carousel .focus-caption h3 { font-size: 28px; }
+}
+
+/* 8px 원과 넓은 클릭 영역으로 현재 슬라이드를 표시한다. */
+.focus-dots { position: absolute; right: 24px; bottom: 12px; z-index: 2; display: flex; gap: 0; }
+.focus-dot { width: 26px; height: 26px; padding: 9px; border: 0; background: transparent; display: grid; place-items: center; }
+.focus-dot::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.45); box-shadow: 0 0 0 1px rgba(0,0,0,.18); transition: background .2s; }
+.focus-dot[aria-current="true"]::before { background: var(--yellow); }
+.focus-dot:hover::before { background: white; }
+.focus-stage .focus-arrow { bottom: 52px; }
+@media (max-width: 600px) {
+  .focus-dots { right: 10px; bottom: 8px; }
+  .focus-stage .focus-arrow { bottom: 44px; }
+}
+
+/* 표지: 하늘은 오른쪽 끝까지, 분리한 깃발은 상단 경계 밖으로 돌출 */
+.hero { overflow: visible; margin-right: calc(-1 * var(--pad-r)); margin-top: 84px; }
+.hero .hero-shot { overflow: visible; }
+.hero .hero-background { border-radius: inherit; }
+.hero-flag-layer {
+  position: absolute; z-index: 2; pointer-events: none;
+  inset: -72px 0 0; overflow: hidden;
+}
+.hero .hero-flag-layer img {
+  width: 100%; height: 100%; min-height: 0; aspect-ratio: auto;
+  object-fit: fill; transform: none; animation: none;
+}
+.hero-copy { z-index: 3; }
+@media (max-width: 860px) {
+  .hero { margin-top: 44px; }
+  .hero-flag-layer { top: -32px; }
+  .hero-copy { margin-right: var(--pad-r); }
+}
+
+/* 표지 배경은 끝까지 직각으로 연결한다. */
+.hero .hero-shot,
+.hero .hero-background,
+.hero::after { border-radius: 0; }
+
+@media (prefers-reduced-motion: no-preference) {
+  /* 화면 밖에서 즉시 초기화해 다음 진입 시 처음부터 블러를 재생한다. */
+  .motion .hero-copy:not(.in),
+  .motion .hero-copy:not(.in) .title-line { transition: none; }
+}
+
+/* PERSPECTIVE: 사진을 지면 전체에 깔고 흰색 라운드 카드로 본문을 구분 */
+.perspective {
+  display: flex;
+  align-items: center;
+  position: relative;
+  isolation: isolate;
+  min-height: 540px;
+  padding: 48px var(--pad-r) 48px var(--pad-l);
+  margin-left: calc(-1 * var(--pad-l));
+  margin-right: calc(-1 * var(--pad-r));
+  border: 0;
+  background: #133637;
+}
+.perspective-background {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+}
+.perspective .perspective-background img {
+  width: 100%; height: 100%; max-height: none;
+  object-fit: cover; object-position: center;
+}
+.perspective-copy {
+  width: min(560px, 54%);
+  padding: 36px 38px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 30px;
+  box-shadow: 0 12px 40px rgba(0, 20, 22, .12);
+}
+.perspective .quote { font-size: 76px; margin-bottom: 10px; }
+.perspective h2 { font-size: clamp(25px, 1.85vw, 34px); word-break: keep-all; overflow-wrap: anywhere; }
+.perspective .ink-aside { font-size: 27px; }
+.perspective .byline { color: #707070; }
+@media (max-width: 1100px) {
+  .perspective-copy { width: min(560px, 72%); padding: 30px; }
+}
+@media (max-width: 600px) {
+  .perspective { min-height: 0; padding: 180px 20px 24px; }
+  .perspective-background img { object-position: 65% center; }
+  .perspective-copy { width: 100%; padding: 26px 24px; border-radius: 24px; }
+  .perspective h2 { font-size: 25px; }
+}
+
+
+/* 넓은 전경 배경: 주요 산업 설비가 있는 오른쪽을 중심으로 배치한다. */
+.perspective .perspective-background img { object-position: 65% center; }
+
+/* 넓은 화면에는 가로 목차, 작은 화면에는 오른쪽 슬라이드 메뉴 */
+.desktop-nav { display: none; }
+.brand { flex-shrink: 0; }
+.nav-drawer { opacity: 0; pointer-events: none; transition: opacity .35s ease; }
+.nav-drawer.is-open { opacity: 1; pointer-events: auto; }
+.nav-panel { transform: translateX(100%); transition: transform .35s cubic-bezier(.22,1,.36,1); }
+.nav-drawer.is-open .nav-panel { transform: translateX(0); }
+@media (min-width: 1280px) {
+  .topbar-inner { width: min(1600px, calc(100% - 64px)); gap: 28px; }
+  .desktop-nav { display: flex; align-items: center; gap: clamp(14px, 1.3vw, 26px); height: 100%; }
+  .desktop-nav a { display: inline-flex; align-items: center; height: 100%; position: relative; color: #eee; text-decoration: none; font-size: 15px; font-weight: 500; white-space: nowrap; }
+  .desktop-nav a::after { content: ""; position: absolute; height: 2px; bottom: 14px; left: 0; right: 0; background: var(--green); transform: scaleX(0); transition: transform .2s; }
+  .desktop-nav a:hover, .desktop-nav a:focus-visible { color: var(--green); }
+  .desktop-nav a:hover::after, .desktop-nav a:focus-visible::after { transform: scaleX(1); }
+  .menu-btn { display: none; }
+}
+
+/* 바람을 타고 들어오는 제목의 기울기 기준은 왼쪽에 둔다. */
+.hero .title-line { transform-origin: left center; }
+
+/* 연기만 이동하고 실제 제목은 원래 위치에서 선명해진다. */
+.title-smoke { position: absolute; z-index: 2; pointer-events: none; max-width: none; }
+@media (prefers-reduced-motion: reduce) { .title-smoke { display: none; } }
+
+/* 연무 레이어의 사각 경계를 사방으로 부드럽게 소거한다. */
+.title-smoke {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 90px, #000 calc(100% - 90px), transparent), linear-gradient(to bottom, transparent, #000 38px, #000 calc(100% - 38px), transparent);
+  mask-image: linear-gradient(to right, transparent, #000 90px, #000 calc(100% - 90px), transparent), linear-gradient(to bottom, transparent, #000 38px, #000 calc(100% - 38px), transparent);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+
+/* 모바일 메뉴는 오른쪽 절반만 사용한다. */
+@media (max-width: 860px) {
+  .nav-panel { width: 50%; padding: 22px 16px; }
+  .nav-panel a { font-size: 15px; overflow-wrap: anywhere; }
+  .nav-head { gap: 8px; }
+  .nav-head p { font-size: 12px; }
+  .nav-close { padding: 0 9px; font-size: 12px; }
+}
+
+/* 모바일 표지: 사진·연무·제목을 동일한 좌표 영역에 배치한다. */
+@media (max-width: 860px) {
+  .hero .hero-shot { height: clamp(360px, 65vw, 480px); }
+  .hero .hero-background { width: 100%; height: 100%; min-height: 0; aspect-ratio: auto; object-fit: cover; }
+  .hero::after {
+    display: block;
+    background: linear-gradient(90deg, rgba(5,28,42,.65), rgba(5,28,42,.1));
+  }
+  .hero .hero-copy {
+    position: absolute; top: 48px; left: 22px; right: 22px;
+    margin: 0; color: #fff;
+  }
+  .hero .hero-copy h1 {
+    color: #fff; font-size: clamp(24px, 4.4vw, 36px);
+    line-height: 1.5; margin: 22px 0 26px;
+    text-shadow: 0 2px 10px rgba(0,20,30,.25);
+  }
+  .hero .eyebrow { color: #fff; font-size: clamp(10px, 1.7vw, 13px); }
+  .hero .badge { font-size: clamp(10px, 1.7vw, 12px); height: 25px; }
+  .hero .more-light { background: transparent; color: #fff; border-color: rgba(255,255,255,.8); font-size: clamp(13px, 2vw, 16px); }
+  .hero .hero-flag-layer { top: -32px; bottom: auto; height: clamp(200px, 39vw, 330px); }
+  .focus-carousel .focus-caption h3 { font-size: clamp(23px, 4.2vw, 32px); }
+  .focus-caption .focus-description { font-size: clamp(16px, 2.5vw, 19px); line-height: 1.7; }
+  .focus-caption .more { font-size: clamp(16px, 2.5vw, 19px); }
+  .card strong { font-size: clamp(17px, 2.6vw, 20px); }
+  .travel-head h3 { font-size: clamp(25px, 4.2vw, 34px); }
+  .perspective h2 { font-size: clamp(23px, 3.6vw, 30px); }
+  .perspective .ink-aside { font-size: clamp(23px, 3.5vw, 27px); }
+}
+
+/* 모바일에서도 좌측 글·우측 깃발 구도를 유지하는 전체 폭 표지 */
+@media (max-width: 860px) {
+  .hero { margin-left: calc(-1 * var(--pad-l)); }
+  .hero .hero-shot { height: clamp(260px, 64vw, 410px); }
+  .hero .hero-copy { top: 32px; left: 20px; right: 20px; }
+  .hero .hero-copy h1 { font-size: clamp(23.76px, 5.412vw, 39.6px); line-height: 1.5; margin: 18px 0 20px; }
+  .hero .eyebrow { font-size: clamp(9px, 1.4vw, 11px); letter-spacing: .16em; margin-bottom: 10px; gap: 7px; }
+  .hero .eyebrow::before { width: 18px; }
+  .hero .hero-copy > p { margin-top: 0; margin-bottom: 10px; }
+  .hero .badge { font-size: 9px; height: 21px; padding: 0 8px; }
+  .hero .more-light { font-size: 12px; min-height: 32px; height: 32px; padding: 0 12px; }
+  .hero .hero-flag-layer { height: clamp(180px, 43vw, 310px); }
+}
+
+/* 모바일 깃대가 배경 중간에서 끊기지 않도록 하단에 고정한다. */
+@media (max-width: 860px) {
+  .hero .hero-flag-layer { top: -32px; bottom: 0; height: auto; }
+}
+
+/* VOICE의 이벤트 안내는 기사 제목 바로 아래에 배치한다. */
+.focus-voice-extra { grid-column: 1 / -1; }
+.focus-voice-extra[hidden], .focus-description[hidden] { display: none; }
+.focus-carousel .focus-caption.is-voice h3 { grid-column: 1 / -1; grid-row: auto; }
+.focus-caption.is-voice .more { grid-column: 1; }
+.focus-voice-extra .note { font-size: clamp(15px, 1.5vw, 22px); padding: 10px 12px; transform: none; display: flex; }
+.focus-voice-extra .ink-point { margin: 12px 0 4px; transform: none; }
+.focus-voice-extra .ink { font-size: clamp(27px, 2.5vw, 36px); }
+
+/* VOICE도 다른 기사처럼 왼쪽 제목·오른쪽 안내의 2열 구성을 유지한다. */
+.focus-carousel .focus-caption.is-voice h3 { grid-column: 1; grid-row: 2 / 4; }
+.focus-caption.is-voice .focus-voice-extra { grid-column: 2; grid-row: 2; }
+.focus-caption.is-voice .more { grid-column: 2; grid-row: 3; }
+@media (max-width: 1100px) {
+  .focus-carousel .focus-caption.is-voice h3,
+  .focus-caption.is-voice .focus-voice-extra,
+  .focus-caption.is-voice .more { grid-column: 1; grid-row: auto; }
+}
+
+/* 영상 안내: 위로 향하는 루프형 손그림 화살표 */
+.focus-voice-extra .ink-point { align-items: flex-end; gap: 0; }
+.focus-voice-extra .ink-arrow-loop { width: 76px; height: 100px; margin-top: -6px; }
+.focus-voice-extra .ink-arrow-loop path:first-of-type { stroke-dasharray: none; stroke-dashoffset: 0; }
+.focus-voice-extra .ink-point .ink { padding-bottom: 0; margin-left: -4px; }
+@media (max-width: 600px) {
+  .focus-voice-extra .ink-arrow-loop { width: 60px; height: 80px; }
+}
+
+/* 이미지 위 흰색 캘리그라피: 오른쪽으로 뻗는 획과 기울기로 속도감 표현 */
+.perspective-slogan {
+  position: absolute; right: 5%; top: 50%; width: 36%; margin: 0;
+  transform: translateY(-50%) rotate(-8deg) skewX(-7deg);
+  color: #fff; font-family: "Nanum Pen Script", cursive;
+  font-size: clamp(42px, 4.3vw, 78px); font-weight: 400;
+  line-height: 1; letter-spacing: -.04em; text-align: center;
+  text-shadow: 0 3px 16px rgba(0, 20, 30, .6);
+  pointer-events: none;
+}
+.perspective-slogan span { display: block; white-space: nowrap; }
+.perspective-slogan strong { display: block; font-size: 1.45em; font-weight: 400; margin-top: 8px; }
+.perspective-slogan::after {
+  content: ""; display: block; width: 85%; height: 6px; margin: 9px auto 0;
+  background: white; clip-path: polygon(0 65%, 100% 0, 88% 42%, 2% 100%);
+}
+@media (min-width: 601px) and (max-width: 1100px) {
+  .perspective-copy { width: 57%; }
+  .perspective-slogan { right: 3%; width: 34%; font-size: clamp(36px, 4.6vw, 50px); }
+}
+@media (max-width: 600px) {
+  .perspective-slogan { top: 32px; right: 8%; width: auto; font-size: clamp(33px, 7.5vw, 43px); transform: rotate(-8deg) skewX(-7deg); }
+  .perspective-slogan strong { display: inline; font-size: 1.2em; margin-left: 6px; }
+  .perspective-slogan span { display: inline; }
+  .perspective-slogan::after { height: 5px; }
+}
+
+/* 보다 날렵한 붓글씨로 바꾸고 이미지 중앙 쪽으로 이동한다. */
+.perspective-slogan {
+  right: 10%; width: 34%;
+  font-family: "Nanum Brush Script", "Nanum Pen Script", cursive;
+  transform: translateY(-50%) rotate(-10deg) skewX(-14deg);
+  letter-spacing: -.055em;
+}
+.perspective-slogan strong { font-size: 1.55em; }
+.perspective-slogan::after { width: 100%; height: 5px; transform: skewX(-20deg); }
+@media (min-width: 601px) and (max-width: 1100px) {
+  .perspective-slogan { right: 5%; width: 34%; }
+}
+@media (max-width: 600px) {
+  .perspective-slogan { right: 14%; width: auto; transform: rotate(-10deg) skewX(-14deg); }
+  .perspective-slogan strong { font-size: 1.2em; }
+}
+
+/* 영상보기 화살표·문구를 오른쪽 안내 영역 중앙에 정렬한다. */
+.focus-voice-extra .ink-point { width: 100%; justify-content: center; }
+
+/* 참고 구도처럼 왼쪽 위로 향하는 낮은 화살표와 우측 하단 문구 */
+.focus-voice-extra .ink-point { align-items: flex-end; gap: 6px; }
+.focus-voice-extra .ink-arrow-loop { width: 90px; height: 82px; margin-top: 0; }
+.focus-voice-extra .ink-point .ink { margin-left: 0; margin-bottom: 0; padding-bottom: 0; }
+@media (max-width: 600px) {
+  .focus-voice-extra .ink-arrow-loop { width: 72px; height: 66px; }
+}
+
+/* 인물 누끼를 원본 사진 위에 맞추고 윤곽에 흰색 오림 테두리를 더한다. */
+.sticker-filters { position: absolute; width: 0; height: 0; overflow: hidden; pointer-events: none; }
+.runway-shot { position: relative; }
+.card .runway-shot .runway-cutout {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  aspect-ratio: auto; object-fit: fill; pointer-events: none;
+  filter: url(#runway-sticker);
+}
+
+/* 얼굴과 옷은 유지하고, 바깥 종이 테두리를 넓고 각진 오림 모양으로 변경 */
+.runway-shot::before {
+  content: ""; position: absolute; inset: 0; z-index: 1;
+  background: #fff; pointer-events: none;
+  clip-path: polygon(49% 1%, 60% 13%, 58% 34%, 66% 41%, 71% 58%, 74% 79%, 70% 100%, 26% 100%, 24% 79%, 29% 46%, 39% 34%, 38% 15%);
+}
+.card .runway-shot .runway-cutout { z-index: 2; filter: none; }
+.runway-shot::before { transition: transform .55s cubic-bezier(.22,.7,.2,1); }
+@media (prefers-reduced-motion: no-preference) {
+  .card:hover .runway-shot::before { transform: scale(1.06); }
+}
+@media (prefers-reduced-motion: reduce) { .runway-shot::before { transition: none; } }
+
+/* 겨울 멋쟁이: 굵은 초록 활자와 흰색·노랑의 스티커 레터링 */
+.runway-shot { container-type: inline-size; }
+.runway-lettering {
+  position: absolute; z-index: 3; left: 2%; top: 28%; width: 25%;
+  display: flex; flex-direction: column; align-items: center;
+  color: #486b4d; font-family: Pretendard, sans-serif;
+  font-size: clamp(18px, 6.4cqw, 44px); font-weight: 900;
+  line-height: 1.12; letter-spacing: -.075em;
+  pointer-events: none;
+  filter: drop-shadow(1px 3px 0 rgba(0,0,0,.15));
+}
+.runway-lettering > span,
+.runway-lettering > strong {
+  display: block; white-space: nowrap;
+  -webkit-text-stroke: 5px white; paint-order: stroke fill;
+  text-shadow: 2px 4px 0 #ffeb5a;
+}
+.runway-lettering > span { font-size: 1.35em; transform: rotate(-9deg); }
+.runway-lettering > strong { font-size: 1em; font-weight: 900; margin-top: 8px; transform: rotate(-6deg); }
+.runway-lettering > i { display: block; width: 82%; height: 6px; margin-top: 9px; background: #ffeb5a; border: 2px solid white; transform: rotate(-8deg); clip-path: polygon(0 40%,100% 0,92% 75%,4% 100%); }
+.runway-lettering::before,
+.runway-lettering::after { content: ""; position: absolute; background: #ffeb5a; border: 2px solid white; width: 7px; height: 18px; border-radius: 8px; }
+.runway-lettering::before { top: -16px; left: 15%; transform: rotate(-35deg); }
+.runway-lettering::after { top: -20px; left: 35%; transform: rotate(-8deg); height: 13px; }
+@media (max-width: 600px) {
+  .runway-lettering > span, .runway-lettering > strong { -webkit-text-stroke-width: 4px; }
+}
+
+/* FOCUS의 더보기는 모든 슬라이드에서 같은 하단 기준선에 둔다. */
+.focus-carousel .focus-caption { grid-template-rows: auto minmax(0, 1fr) auto; }
+.focus-carousel .focus-caption h3,
+.focus-carousel .focus-caption.is-voice h3 { grid-column: 1; grid-row: 2 / 4; }
+.focus-caption .focus-description,
+.focus-caption.is-voice .focus-voice-extra { grid-column: 2; grid-row: 2; align-self: start; }
+.focus-caption .more,
+.focus-caption.is-voice .more { grid-column: 2; grid-row: 3; align-self: end; }
+@media (max-width: 1100px) {
+  .focus-carousel .focus-caption { grid-template-rows: auto auto minmax(0, 1fr) auto; }
+  .focus-carousel .focus-caption h3,
+  .focus-carousel .focus-caption.is-voice h3 { grid-column: 1; grid-row: 2; }
+  .focus-caption .focus-description,
+  .focus-caption.is-voice .focus-voice-extra { grid-column: 1; grid-row: 3; }
+  .focus-caption .more,
+  .focus-caption.is-voice .more { grid-column: 1; grid-row: 4; }
+}
+
+/* 사진 속 밝은 조명 픽셀을 구역별로 순차 점등한다. */
+.industrial-lights { display: none; position: absolute; inset: 0; pointer-events: none; }
+.industrial-light-zone { position: absolute; inset: 0; opacity: 0; }
+.perspective .industrial-light-zone img { width: 100%; height: 100%; object-fit: cover; object-position: 65% center; filter: url(#industrial-light-pixels); }
+/* 기존 점등 구역을 유지하고 마스크 가장자리만 부드럽게 연결한다. */
+.industrial-light-zone {
+  clip-path: none;
+  -webkit-mask-size: 100% 100%; mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+  mask-mode: alpha;
+}
+.industrial-light-zone:nth-child(1) { -webkit-mask-image: url("../assets/light-masks/zone-1.svg?v=2"); mask-image: url("../assets/light-masks/zone-1.svg?v=2"); }
+.industrial-light-zone:nth-child(2) { -webkit-mask-image: url("../assets/light-masks/zone-2.svg?v=2"); mask-image: url("../assets/light-masks/zone-2.svg?v=2"); }
+.industrial-light-zone:nth-child(3) { -webkit-mask-image: url("../assets/light-masks/zone-3.svg?v=2"); mask-image: url("../assets/light-masks/zone-3.svg?v=2"); }
+.industrial-light-zone:nth-child(4) { -webkit-mask-image: url("../assets/light-masks/zone-4.svg?v=2"); mask-image: url("../assets/light-masks/zone-4.svg?v=2"); }
+.industrial-light-zone:nth-child(5) { -webkit-mask-image: url("../assets/light-masks/zone-5.svg?v=2"); mask-image: url("../assets/light-masks/zone-5.svg?v=2"); }
+.industrial-light-zone:nth-child(6) { -webkit-mask-image: url("../assets/light-masks/zone-6.svg?v=2"); mask-image: url("../assets/light-masks/zone-6.svg?v=2"); }
+.industrial-light-zone:nth-child(7) { -webkit-mask-image: url("../assets/light-masks/zone-7.svg?v=2"); mask-image: url("../assets/light-masks/zone-7.svg?v=2"); }
+.industrial-light-zone:nth-child(8) { -webkit-mask-image: url("../assets/light-masks/zone-8.svg?v=2"); mask-image: url("../assets/light-masks/zone-8.svg?v=2"); }
+@media (prefers-reduced-motion: no-preference) {
+  .lighting-ready .perspective-background > img { filter: brightness(.3) saturate(.65); transition: filter 1.4s ease 0s; }
+  .lighting-ready .industrial-lights { display: block; }
+  .lighting-ready.is-lit .industrial-light-zone { opacity: 1; transition: opacity 1.4s ease var(--delay); }
+  .lighting-ready.is-lit .perspective-background > img { filter: brightness(.3) saturate(.65); }
+}
+
+/* 힘 있는 흰색 붓글씨와 갈라진 마른 붓 밑획 */
+.perspective .perspective-brush { transform: translateY(-50%) rotate(-3deg); text-shadow: none; }
+.perspective-brush::after { display: none; }
+.perspective .perspective-brush img { width: 100%; height: auto; max-height: none; object-fit: contain; filter: drop-shadow(0 3px 7px rgba(0,20,30,.3)); }
+@media (max-width: 600px) {
+  .perspective .perspective-brush { top: 3px; right: 8%; width: 160px; transform: rotate(-3deg); }
+}
+
+/* 닫기 버튼을 독립된 행에 배치해 이미지와 겹치지 않게 한다. */
+.story .story-close {
+  float: none;
+  display: block;
+  margin: 0 0 20px auto;
+  min-height: 44px;
+  padding: 0 18px;
+  font-size: 16px;
+}
+.story .story-visual { clear: none; margin-top: 0; }
+@media (max-width: 600px) {
+  .story article { padding: 20px 20px 28px; }
+  .story .story-close { margin-bottom: 16px; }
+}
+
+/* 세 글자씩 균형 있게 배치한 출근길 스티커 문구 */
+.runway-lettering > span { font-size: 1.05em; }
+
+/* 메인 사진 크기는 그대로 두고, 오른쪽 여백에 다음 사진 일부를 노출한다. */
+.focus-carousel .focus-viewport {
+  width: calc(100% / .82);
+  aspect-ratio: auto;
+  border-radius: 0;
+}
+.focus-carousel .focus-track {
+  width: 82%;
+  column-gap: 24px;
+  aspect-ratio: 16 / 9;
+}
+.focus-carousel .focus-track .focus-slide {
+  border-radius: 24px;
+  overflow: hidden;
+}
+@media (max-width: 860px) {
+  .focus-carousel .focus-viewport,
+  .focus-carousel .focus-track { width: 100%; }
+  .focus-carousel .focus-track { column-gap: 14px; }
+  .focus-carousel .focus-track .focus-slide { border-radius: 16px; }
+}
+
+/* 고정 배경 없이 사진 자체에만 다음 컷의 원근감과 감광을 적용한다. */
+.focus-carousel .focus-track .focus-slide {
+  transform: perspective(1200px) rotateY(-5deg) scale(.86);
+  transform-origin: left center;
+  filter: brightness(.3);
+  transition: transform .8s cubic-bezier(.25,.1,.25,1), filter .8s cubic-bezier(.25,.1,.25,1);
+}
+.focus-carousel .focus-track .focus-slide.is-main {
+  transform: perspective(1200px) rotateY(0) scale(1);
+  filter: brightness(1);
+}
+.focus-carousel .focus-track.no-transition .focus-slide { transition: none; }
+@media (prefers-reduced-motion: reduce) {
+  .focus-carousel .focus-track .focus-slide { transition: none; }
+}
+
+/* 붓글씨와 붓 밑줄을 기존 크기의 절반으로 축소한다. */
+.perspective .perspective-brush img { transform: scale(.5); transform-origin: center; }
+
+/* 국가 경쟁력: 종이 결이 비치는 노란 크레용 강조선 */
+.perspective-copy .hl { background-image: url("../assets/yellow-crayon.svg"); background-position: 0 88%; }
+
+/* 축소한 붓글씨를 배경 프레임 우측 하단에 배치한다. */
+.perspective .perspective-brush {
+  top: auto; bottom: 5%; right: 4%; width: 17%;
+  transform: rotate(-3deg);
+}
+.perspective .perspective-brush img { transform: none; }
+@media (max-width: 600px) {
+  .perspective .perspective-brush { width: 80px; right: 5%; bottom: 18px; }
+}
+
+/* 조명이 켜지면서 함께 드러나는 굵은 Pretendard 문구 */
+.perspective .perspective-type {
+  top: auto; right: 4%; bottom: 8%; width: 24%; margin: 0;
+  transform: none; font-family: Pretendard, "Apple SD Gothic Neo", sans-serif;
+  font-size: clamp(24px, 2.7vw, 50px); font-weight: 800;
+  line-height: 1.2; letter-spacing: -.045em; color: white;
+  text-align: center; text-shadow: 0 2px 8px rgba(0,15,24,.3);
+}
+.perspective .perspective-type span { display: block; }
+.perspective .perspective-type strong { display: block; margin: 4px 0 0; font-size: 1.3em; font-weight: 900; }
+.perspective .perspective-type::after { display: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .perspective.lighting-ready .perspective-type {
+    color: #071b22; opacity: 0; text-shadow: none;
+    transition: color .7s ease, opacity .7s ease, text-shadow .7s ease;
+  }
+  .perspective.lighting-ready.is-lit .perspective-type {
+    color: #fff; opacity: 1; text-shadow: 0 2px 8px rgba(0,15,24,.3);
+    transition-duration: 1.8s; transition-delay: 1.6s;
+  }
+}
+@media (max-width: 600px) {
+  .perspective .perspective-type { right: 5%; bottom: 20px; width: 34%; font-size: clamp(18px, 4.5vw, 27px); }
+}
+
+/* 왼쪽 카드 하단에 맞춘 붓글씨: 점등과 함께 부드럽게 밝아진다. */
+.perspective .perspective-lit-brush {
+  top: auto; right: 4%; bottom: var(--copy-bottom, 48px); width: 24%;
+  transform: none;
+}
+.perspective .perspective-lit-brush img {
+  display: block; filter: blur(.45px) drop-shadow(0 2px 6px rgba(0,15,24,.25));
+}
+@media (prefers-reduced-motion: no-preference) {
+  .perspective.lighting-ready .perspective-lit-brush {
+    opacity: 0; filter: brightness(.15) blur(2px);
+    transition: opacity .7s ease, filter .7s ease;
+  }
+  .perspective.lighting-ready.is-lit .perspective-lit-brush {
+    opacity: 1; filter: brightness(1) blur(0);
+    transition-duration: 2.8s; transition-delay: 1s;
+  }
+}
+@media (max-width: 600px) {
+  .perspective .perspective-lit-brush { top: 16px; bottom: auto; right: 6%; width: 130px; }
+}
+
+/* 카드 하단과 정렬되는 한 줄 Pretendard 문구 */
+.perspective .perspective-lit-line {
+  top: auto; right: 4%; bottom: var(--copy-bottom, 48px);
+  width: auto; max-width: 43%; margin: 0; transform: none;
+  font-family: Pretendard, "Apple SD Gothic Neo", sans-serif;
+  font-weight: 800; font-size: clamp(24px, 2.6vw, 48px);
+  line-height: 1.15; letter-spacing: -.045em; white-space: nowrap;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .perspective.lighting-ready .perspective-lit-line {
+    opacity: 0; color: #071b22; filter: brightness(.15) blur(2px);
+    transition: opacity .7s ease, color .7s ease, filter .7s ease;
+  }
+  .perspective.lighting-ready.is-lit .perspective-lit-line {
+    opacity: 1; color: #fff; filter: brightness(1) blur(0);
+    transition-duration: 2.8s; transition-delay: 1s;
+  }
+}
+@media (max-width: 600px) {
+  .perspective .perspective-lit-line {
+    top: 112px; bottom: auto; right: 6%; max-width: 88%;
+    font-size: clamp(20px, 5vw, 28px);
+  }
+}
+
+/* 다음 사진과의 간격은 48px로 유지한다. */
+.focus-carousel .focus-track { column-gap: 48px; }
+@media (max-width: 860px) {
+  .focus-carousel .focus-track { column-gap: 24px; }
+}
+
+/* 손으로 비스듬히 그은 크레용: 굽은 선과 불규칙한 두께를 드러낸다. */
+.perspective .perspective-copy.rise .hl {
+  background-image: url("../assets/yellow-crayon.svg?v=2");
+  background-size: 100% .56em;
+  background-position: 0 96%;
+}
+
+/* 점등과 함께 밝아지는 청백색 네온 글씨 */
+.perspective .perspective-lit-line {
+  text-shadow: 0 0 2px #fff, 0 0 7px rgba(218,249,255,.85),
+    0 0 16px rgba(106,220,255,.65), 0 0 30px rgba(74,198,246,.4);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .perspective.lighting-ready .perspective-lit-line {
+    text-shadow: none;
+    transition: opacity .7s ease, color .7s ease, filter .7s ease, text-shadow .7s ease;
+  }
+  .perspective.lighting-ready.is-lit .perspective-lit-line {
+    text-shadow: 0 0 2px #fff, 0 0 7px rgba(218,249,255,.85),
+      0 0 16px rgba(106,220,255,.65), 0 0 30px rgba(74,198,246,.4);
+    transition-duration: 2.8s; transition-delay: 1s;
+  }
+}
+
+/* 데스크톱 레일 안에서 낙하산과 문구가 함께 스크롤을 따라간다. */
+.rail-follow { display: contents; }
+@media (min-width: 861px) {
+  .rail-follow {
+    display: flex; flex-direction: column; align-items: center;
+    position: sticky; top: 100px; width: 100%; margin-top: 56px;
+    flex-shrink: 0;
+  }
+  .rail-follow .rail-para { margin-top: 0; max-height: 38vh; object-fit: contain; }
+  .rail-follow .rail-edition { margin-top: clamp(24px, 5vh, 48px); }
+  .rail-follow .mark-dark { margin-top: 32px; }
+}
+
+/* 문구 변경과 기존 대비 5% 축소 */
+.perspective .perspective-lit-line {
+  font-size: clamp(22.8px, 2.47vw, 45.6px);
+  max-width: none;
+}
+@media (max-width: 600px) {
+  .perspective .perspective-lit-line { font-size: clamp(19px, 4.75vw, 26.6px); max-width: 88%; }
+}
+
+/* 주제 손글씨까지 같은 고정 묶음으로 유지한다. */
+@media (min-width: 861px) {
+  .rail-follow { margin-top: 28px; }
+  .rail-follow .rail-hand { margin-top: 0; flex-shrink: 0; }
+  .rail-follow .rail-para { margin-top: clamp(24px, 5vh, 56px); max-height: 34vh; }
+}
+
+/* 로고는 고정 레일의 화면 하단에 두고 아래 여백을 확보한다. */
+@media (min-width: 861px) {
+  .rail-follow {
+    min-height: calc(100vh - 200px);
+    min-height: calc(100dvh - 200px);
+  }
+  .rail-follow .mark-dark {
+    margin-top: auto;
+    flex-shrink: 0;
+  }
+  .rail-follow .rail-edition { margin-bottom: 28px; }
+}
+
+/* 따뜻한 출근길: 코트와 어울리는 테라코타와 브라운 */
+.runway-lettering > span { color: #b85c3e; }
+.runway-lettering > strong { color: #8f4935; }
+
+/* 사진 안으로 확대되어 들어가는 여행 페이지 전환 */
+body.is-leaving { overflow: hidden; }
+.travel-portal {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  overflow: hidden;
+  pointer-events: none;
+  background: transparent;
+}
+.travel-stage { position: absolute; transform-origin: center center; }
+.travel-stage img {
+  position: absolute;
+  max-width: none;
+  object-fit: cover;
+}
+.travel-portal.is-arrive {
+  background: #10242c;
+  transform-origin: center center;
+}
+.travel-portal.is-arrive.is-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 2vw;
+}
+.travel-portal.is-arrive.is-pair img,
+.travel-portal.is-arrive.is-one img {
+  position: relative;
+  inset: auto;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+}
+.travel-portal.is-arrive.is-one img { position: absolute; inset: 0; }
+
+/* 이동하지 않는 바닥 레이어를 제거해 사진 사이와 아래를 깨끗하게 유지한다. */
+.focus-carousel .focus-stage,
+.focus-carousel .focus-viewport,
+.focus-carousel .focus-track { background: transparent; box-shadow: none; }
+.focus-carousel .focus-stage::before,
+.focus-carousel .focus-stage::after,
+.focus-carousel .focus-viewport::before,
+.focus-carousel .focus-viewport::after { content: none; display: none; }
+.focus-carousel .focus-track .focus-slide { background: transparent; box-shadow: none; }
+
+/* 원래 배율을 유지하며 연장한 하늘과 전경만큼 높이를 확보한다. */
+@media (min-width: 601px) {
+  .perspective {
+    min-height: var(--extended-scene-height, 764px);
+    padding-top: var(--extended-scene-pad, 160px);
+    padding-bottom: var(--extended-scene-pad, 160px);
+  }
+}
+
+/* 따옴표 공간을 덜고, 카드와 네온 문구를 아래쪽으로 배치한다. */
+.perspective .perspective-copy { padding-top: 28px; }
+.perspective .perspective-copy > p:first-child { margin-top: 0; }
+@media (min-width: 601px) {
+  .perspective {
+    align-items: flex-end;
+    padding-bottom: calc(var(--extended-scene-pad, 160px) / 2);
+  }
+}
+@media (max-width: 600px) {
+  .perspective { padding-bottom: 12px; }
+}
+
+/* 세로 위치를 유지하고 흰 카드 오른쪽 여백의 가로 중앙에 정렬한다. */
+@media (min-width: 601px) {
+  .perspective .perspective-lit-line {
+    left: var(--slogan-center, 75%); right: auto;
+    transform: translateX(-50%);
+  }
+}
+
+/* 가로 중앙을 유지하고 문구 한 줄 높이만큼 위로 이동한다. */
+@media (min-width: 601px) {
+  .perspective .perspective-lit-line { transform: translate(-50%, -100%); }
+}
+
+/* 첫 일러스트의 원본 내부 흰 여백을 프레임 밖으로 덜어낸다. */
+.life [data-story="nomics"] .shot { aspect-ratio: 320 / 360; }
+.life [data-story="nomics"] .shot img {
+  display: block; position: absolute; top: 0; left: -5%;
+  width: 110%; max-width: none; height: auto;
+  aspect-ratio: 320 / 360; object-fit: cover;
+}
+
+/* 상단 발행 정보와 이달의 주제 30% 확대 */
+.issue-vol { font-size: 16.9px; }
+.issue-theme { font-size: 18.2px; }
+
+/* 메인 섹션 헤더의 번호·제목·보조 문구를 15% 확대한다. */
+.section-head::before { font-size: 43.7px; }
+.section-head h2 { font-size: clamp(25.3px, 1.955vw, 32.2px); }
+.section-head span { font-size: 16.1px; }
+@media (max-width: 860px) {
+  .section-head::before { font-size: 34.5px; }
+  .section-head h2 { font-size: clamp(20.7px, 4.025vw, 28.75px); }
+  .section-head span { font-size: 13.8px; }
+}
+
+/* 메인 웹진의 섹션 사이에 충분한 호흡을 둔다. */
+.sheet > main > section + section { margin-top: clamp(120px, 9vw, 168px); }
+.sheet > main > #news .newsbar { margin-top: 0; }
+.sheet > main .section-head { margin-bottom: 40px; }
+@media (max-width: 860px) {
+  .sheet > main > section + section { margin-top: 88px; }
+  .sheet > main .section-head { margin-bottom: 32px; }
+}
+@media (max-width: 480px) {
+  .sheet > main > section + section { margin-top: 72px; }
+}
+
+/* 하늘과 깃대의 아래쪽을 연장한 표지, 기존 가로 배율 유지 */
+@media (min-width: 861px) {
+  .hero .hero-background { aspect-ratio: 1871 / 840; height: auto; }
+}
+@media (max-width: 860px) {
+  .hero .hero-shot { height: clamp(330px, 81vw, 520px); }
+}
+
+/* 확대 사진 뒤에서 준비되는 실제 상세 화면 */
+.travel-destination {
+  position: fixed; inset: 0; width: 100%; height: 100%;
+  z-index: 9999; border: 0; opacity: 0; background: white;
+  pointer-events: none;
+}
+
+/* 초록 태그를 캡슐 모양으로 통일하고 글씨를 10% 확대한다. */
+.badge { border-radius: 999px; font-size: 13.2px; height: auto; min-height: 29px; padding: 6px 14px; line-height: 1.2; }
+/* FOCUS의 점 형태 카테고리는 기존 구성 유지 */
+.focus-caption .badge { font-size: 12.1px; min-height: 0; padding: 0; border-radius: 0; }
+@media (max-width: 860px) {
+  .hero .badge { font-size: 9.9px; height: auto; min-height: 24px; padding: 5px 11px; border-radius: 999px; }
+  .focus-item .badge { font-size: 11px; }
+}
+@media (max-width: 480px) {
+  .life .badge { font-size: 9.9px; height: auto; min-height: 26px; padding: 5px 10px; border-radius: 999px; }
+}
+
+/* FIELD & PEOPLE: 참고 지면처럼 제목과 부가 정보를 넉넉하게 */
+#field .card button > .badge {
+  font-size: 16px; min-height: 36px; padding: 8px 17px;
+  margin-top: 12px; margin-bottom: 18px;
+}
+#field .card button > strong {
+  display: block; font-size: clamp(26px, 2.2vw, 32px);
+  line-height: 1.45; font-weight: 750; word-break: keep-all;
+  margin-bottom: 18px;
+}
+#field .card button > em {
+  display: block; font-size: 18px; line-height: 1.6; font-weight: 500;
+}
+@media (max-width: 860px) {
+  #field .card button > .badge { font-size: 14px; min-height: 32px; padding: 7px 14px; margin-bottom: 14px; }
+  #field .card button > strong { font-size: clamp(23px, 3.5vw, 28px); margin-bottom: 12px; }
+  #field .card button > em { font-size: 17px; }
+}
+
+/* 초록 태그 14px 통일, FIELD 기사 정보의 간격 조정 */
+.badge,
+.hero .badge,
+.life .badge,
+.focus-item .badge,
+#field .card button > .badge { font-size: 14px; }
+#field .card button > .badge { margin-top: 8px; margin-bottom: 10px; min-height: 32px; padding: 7px 14px; }
+#field .card button > strong { font-size: 28px; line-height: 1.25; margin-bottom: 10px; }
+#field .card button > em { line-height: 1.4; }
+@media (max-width: 860px) {
+  #field .card button > strong { font-size: clamp(23px, 3.5vw, 28px); }
+}
+
+/* 카드의 flex 간격과 개별 마진이 중복되지 않도록 정리한다. */
+#field .card button { gap: 0; }
+#field .card button > .shot { margin-bottom: 12px; }
+#field .card button > .badge { margin-top: 0; margin-bottom: 10px; }
+#field .card button > strong { font-size: 24px; line-height: 1.2; margin-bottom: 8px; }
+#field .card button > em { line-height: 1.35; }
+#travel .twin-captions { margin-top: 12px; }
+#travel .twin-captions p { margin: 0; line-height: 1.3; }
+#travel .twin-captions strong { font-size: 24px; }
+#travel .twin-captions span { font-size: 18px; }
+@media (max-width: 860px) {
+  #field .card button > strong { font-size: 22px; }
+  #travel .twin-captions strong { font-size: 20px; }
+  #travel .twin-captions span { font-size: 14px; }
+}
+
+/* 데스크톱 네브바: 13pt, 기존 Medium 두께 유지 */
+@media (min-width: 1280px) {
+  .desktop-nav a { font-size: 17.3333px; font-weight: 500; }
+  .desktop-nav { gap: clamp(10px, 1vw, 20px); }
+}
+
+/* 점등된 조명의 하이라이트 */
+.perspective .industrial-light-zone img { filter: brightness(1.03) saturate(1.05); }
+
+/* 하늘은 시설별 공급과 분리해 약하게, 천천히 밝아진다. */
+.perspective-background::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: url("../assets/perspective-pylon-lit.png") 65% center / cover no-repeat;
+  -webkit-mask-image: linear-gradient(#000 0%, #000 22%, transparent 36%);
+  mask-image: linear-gradient(#000 0%, #000 22%, transparent 36%);
+  opacity: 0; filter: brightness(1.12) saturate(1.02);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .lighting-ready.is-lit .perspective-background::after { opacity: 1; transition: opacity 4.5s ease .5s; }
+  .lighting-ready.is-lit .industrial-light-zone { transition: opacity 1.5s ease var(--delay); }
+}
+
+/* 원거리 우측 상단 시설과 연결 도로도 별도로 점등한다. */
+.industrial-light-zone:nth-child(9) {
+  -webkit-mask-image: url("../assets/light-masks/zone-9.svg");
+  mask-image: url("../assets/light-masks/zone-9.svg");
+}
+
+/* 하단 송전탑·도로 구역 점등과 문구·네온의 노출을 동기화한다. */
+@media (prefers-reduced-motion: no-preference) {
+  .perspective.lighting-ready.is-lit .perspective-lit-line {
+    transition-delay: 3.2s;
+    transition-duration: 2s;
+  }
+}
+
+/* KEPCO NEWS: 풀 배경 위에 나란히 놓인 세 장의 뉴스 카드 */
+.news-feature {
+  position: relative; isolation: isolate; overflow: hidden;
+  margin-left: calc(-1 * var(--pad-l)); margin-right: calc(-1 * var(--pad-r));
+  padding: 64px var(--pad-r) 72px var(--pad-l); background: #102d36;
+}
+.news-feature-background { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; }
+.news-feature::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(110deg,rgba(5,25,34,.92),rgba(8,40,47,.7)); }
+.news-feature-heading { color: #fff; margin-bottom: 36px; }
+.news-feature-heading h2 { margin: 0; font-size: 32px; line-height: 1.2; font-weight: 800; letter-spacing: -.035em; }
+.news-feature-heading p { margin: 12px 0 0; font-size: 18px; color: #c5dad7; }
+.news-card-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 24px; }
+.news-card { min-width: 0; border-radius: 24px; overflow: hidden; background: #fff; box-shadow: 0 12px 30px rgba(0,0,0,.14); }
+.news-card button { width: 100%; height: 100%; border: 0; padding: 0; background: transparent; color: var(--ink); text-align: left; display: flex; flex-direction: column; }
+.news-card button > img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; transition: filter .25s; }
+.news-card-copy { padding: 24px; display: flex; flex-direction: column; align-items: flex-start; flex: 1; }
+.news-card strong { margin-top: 16px; font-size: 24px; line-height: 1.35; letter-spacing: -.035em; word-break: keep-all; }
+.news-card-summary { font-size: 18px; line-height: 1.65; color: #69736e; margin-top: 16px; margin-bottom: 28px; }
+.news-card-more { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: auto; padding-top: 16px; border-top: 1px solid #e1e8e4; font-size: 17px; font-weight: 600; }
+.news-card-more > span { font-size: 25px; color: #087354; }
+.news-card button:hover > img { filter: brightness(1.08); }
+.news-card button:focus-visible { outline: 3px solid #ffdf52; outline-offset: -5px; }
+@media (max-width: 1100px) {
+ .news-card-grid { gap: 16px; }
+ .news-card-copy { padding: 20px; }
+ .news-card strong { font-size: 22px; }
+}
+@media (max-width: 860px) {
+ .news-feature { padding-top: 44px; padding-bottom: 48px; }
+ .news-feature-heading h2 { font-size: 28px; }
+ .news-card-grid { grid-template-columns: 1fr; gap: 24px; }
+ .news-card button > img { max-height: 260px; }
+ .news-card strong { font-size: 24px; }
+ .news-card-summary { font-size: 18px; }
+}
+
+/* 왼쪽 송전탑 통로의 추가 조명도 전력 공급 순서에 포함한다. */
+.industrial-light-zone:nth-child(10) {
+  -webkit-mask-image: url("../assets/light-masks/zone-10.svg");
+  mask-image: url("../assets/light-masks/zone-10.svg");
+}
+
+/* 카드 전체가 떠오르는 뉴스 호버 피드백 */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .news-card { transition: transform .35s cubic-bezier(.22,.7,.2,1), box-shadow .35s ease; }
+  .motion .news-card.rise.in { transform: translateY(0); }
+  .news-card:hover,
+  .news-card:focus-within,
+  .motion .news-card.rise.in:hover,
+  .motion .news-card.rise.in:focus-within {
+    transform: translateY(-10px);
+    box-shadow: 0 24px 44px rgba(0,0,0,.28);
+  }
+  .news-card-more > span { transition: transform .35s ease; }
+  .news-card:hover .news-card-more > span { transform: translate(3px,-3px); }
+}
+
+/* 따뜻한 출근길 스티커: SB 어그로 Bold */
+@font-face {
+  font-family: "SB Aggro";
+  src: url("https://cdn.jsdelivr.net/gh/noonnu/2110@1.0/SBAggroB.woff") format("woff");
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+.runway-lettering,
+.runway-lettering > span,
+.runway-lettering > strong {
+  font-family: "SB Aggro", Pretendard, sans-serif;
+  font-weight: 700;
+}
+
+/* 본문 중앙의 섹션 제목과 양끝까지 이어지는 구분선 */
+.sheet > main .section-head {
+  position: relative; display: flex; align-items: center; justify-content: center;
+  gap: 0; margin-left: calc(-1 * var(--pad-l)); margin-right: calc(-1 * var(--pad-r));
+}
+.sheet > main .section-head::before,
+.sheet > main .section-head::after {
+  content: ""; display: block; flex: 1 1 0; height: 1px;
+  background: #b8bfbb; color: transparent; -webkit-text-stroke: 0;
+}
+.section-head-label { display: flex; align-items: center; justify-content: center; gap: 16px; padding: 0 26px; text-align: center; }
+.section-head-label h2 { flex-shrink: 0; }
+@media (max-width: 860px) {
+  .section-head-label { gap: 10px; padding: 0 18px; }
+}
+@media (max-width: 480px) {
+  .section-head-label { padding: 0 14px; }
+}
+
+/* 섹션 진입과 제목 아래 간격을 넉넉하게 확보한다. */
+.sheet > main > section + section { margin-top: clamp(152px, 11vw, 208px); }
+.sheet > main .section-head { margin-bottom: 64px; }
+@media (max-width: 860px) {
+  .sheet > main > section + section { margin-top: 112px; }
+  .sheet > main .section-head { margin-bottom: 48px; }
+}
+@media (max-width: 480px) {
+  .sheet > main > section + section { margin-top: 96px; }
+  .sheet > main .section-head { margin-bottom: 40px; }
+}
+
+/* 다음 컷은 본문 오른쪽 패딩을 넘어 화면 끝까지 노출한다. */
+@media (min-width: 861px) {
+  .focus-carousel .focus-viewport { width: calc(100% / .82 + var(--pad-r)); }
+  .focus-carousel .focus-track { width: calc((100% - var(--pad-r)) * .82); }
+}
+@media (max-width: 860px) {
+  .focus-carousel .focus-viewport { width: calc(100% + var(--pad-r)); }
+  .focus-carousel .focus-track { width: calc(100% - var(--pad-r)); }
+}
+
+/* 뉴스 우측 상단 LIVE 워드마크 */
+.news-feature-heading { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.news-live { display: flex; align-items: center; gap: 16px; }
+.news-live-mark { display: inline-flex; align-items: center; gap: 9px; flex-shrink: 0; }
+.news-live-mark i { display: block; width: 12px; height: 12px; border-radius: 50%; background: linear-gradient(140deg,#ff6534,#ff1555); }
+.news-live-mark b { display: block; padding: 7px 18px 7px 12px; border-radius: 0 999px 999px 0; color: white; background: linear-gradient(120deg,#ff1856,#ff493a 55%,#ff1555); font-size: 20px; line-height: 1; font-weight: 750; letter-spacing: .02em; }
+.news-live p { margin: 0; color: #eef5f3; font-size: 18px; font-weight: 500; white-space: nowrap; }
+@media(max-width: 860px) {
+  .news-feature-heading { flex-wrap: wrap; gap: 18px; }
+  .news-live { margin-left: auto; gap: 10px; }
+  .news-live-mark b { font-size: 17px; }
+  .news-live p { font-size: 16px; }
+}
+@media(max-width: 480px) {
+  .news-feature-heading h2 { width: 100%; }
+}
+
+/* 붉은 점을 담는 흰색 라운드 박스 */
+.news-live-mark { gap: 0; }
+.news-live-mark i {
+  width: 32px; height: 34px; border-radius: 999px 0 0 999px;
+  background: #fff; position: relative;
+}
+.news-live-mark i::after {
+  content: ""; position: absolute; width: 10px; height: 10px;
+  left: 11px; top: 50%; transform: translateY(-50%); border-radius: 50%;
+  background: linear-gradient(140deg,#ff6534,#ff1555);
+}
+.news-live-mark b { min-height: 34px; display: flex; align-items: center; }
+@media(max-width: 860px) {
+  .news-live-mark i { height: 31px; }
+  .news-live-mark b { min-height: 31px; }
+}
+
+.news-live p { font-family: "SB Aggro", Pretendard, sans-serif; font-weight: 700; }
+
+.news-feature-heading h2 { font-family: "SB Aggro", Pretendard, sans-serif; font-weight: 700; }
+
+/* 친근한 손글씨 말풍선: 오늘 좀 / 멋진데? */
+.runway-lettering {
+  left: 2%; top: 27%; width: 29%; padding: 12px 8px 14px;
+  background: #fffdf2; border: 2px solid #49634c;
+  border-radius: 44% 48% 43% 46% / 30% 35% 38% 32%;
+  transform: rotate(-7deg);
+  font-size: clamp(20px, 6cqw, 46px); line-height: 1;
+  letter-spacing: -.045em;
+  filter: drop-shadow(3px 4px 0 rgba(26,51,38,.18));
+}
+.runway-lettering > span,
+.runway-lettering > strong {
+  font-family: "Nanum Pen Script", "Nanum Brush Script", cursive;
+  font-weight: 400; -webkit-text-stroke: 0; text-shadow: none;
+  transform: none; color: #85503b;
+}
+.runway-lettering > span { font-size: .95em; }
+.runway-lettering > strong { font-size: 1.14em; margin-top: 3px; color: #b85c3e; }
+.runway-lettering > i {
+  position: absolute; width: 20px; height: 20px; right: -9px; top: 56%;
+  margin: 0; background: #fffdf2; border: 0;
+  border-top: 2px solid #49634c; border-right: 2px solid #49634c;
+  clip-path: none; transform: rotate(30deg) skewY(15deg);
+  z-index: -1;
+}
+.runway-lettering::before,
+.runway-lettering::after { display: none; }
+@media(max-width: 600px) {
+  .runway-lettering { padding: 9px 5px 11px; }
+  .runway-lettering > i { width: 14px; height: 14px; right: -6px; }
+}
+
+/* 노란 구름형 말풍선과 검은 손글씨 */
+.runway-lettering {
+  left: 1%; top: 20%; width: 33%; aspect-ratio: 400 / 340;
+  padding: 0 0 8%; justify-content: center;
+  background: url("../assets/runway-cloud-bubble.svg") center / 100% 100% no-repeat;
+  border: 0; border-radius: 0; transform: rotate(-4deg); filter: none;
+  font-size: clamp(20px, 5.3cqw, 42px); line-height: 1;
+}
+.runway-lettering > span,
+.runway-lettering > strong {
+  color: #111; font-family: "Nanum Pen Script", cursive; font-weight: 400;
+  -webkit-text-stroke: 0; text-shadow: none; transform: none;
+}
+.runway-lettering > span { font-size: 1em; }
+.runway-lettering > strong { font-size: 1.08em; margin-top: 1px; }
+.runway-lettering > i { display: none; }
+@media(max-width: 600px) {
+  .runway-lettering { padding: 0 0 8%; }
+}
+
+/* 영상 안내 박스: 원형 재생 아이콘과 문구를 한 덩어리로 정렬 */
+.focus-voice-extra .note {
+  display: flex; align-items: center; gap: 16px; padding: 16px 20px;
+  border-radius: 14px; background: #ffeb5a; line-height: 1.55;
+}
+.video-note-play {
+  display: grid; place-items: center; flex: 0 0 48px; width: 48px; height: 48px;
+  border-radius: 50%; background: #182c26; color: #ffeb5a;
+  box-shadow: 0 0 0 5px rgba(255,255,255,.35);
+}
+.video-note-play svg { width: 27px; height: 27px; fill: currentColor; }
+@media(max-width: 600px) {
+  .focus-voice-extra .note { gap: 13px; padding: 14px 16px; }
+  .video-note-play { flex-basis: 38px; width: 38px; height: 38px; }
+  .video-note-play svg { width: 23px; height: 23px; }
+}
+
+@font-face {
+  font-family: "UhBee Namsoyoung";
+  src: url("../assets/fonts/UhBeenamsoyoung.woff") format("woff");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+/* 말풍선 꼬리를 제외한 몸통 중앙에 두 줄을 하나로 정렬한다. */
+.runway-lettering { padding: 0; }
+.runway-lettering > .runway-words {
+  position: absolute; left: 50%; top: 44%; width: 76%;
+  transform: translate(-50%, -50%); margin: 0; padding: 0;
+  text-align: center; font-family: "UhBee Namsoyoung", cursive;
+  font-weight: 400; line-height: 1.15; color: #111;
+}
+.runway-words > span,
+.runway-words > strong {
+  display: block; white-space: nowrap; margin: 0;
+  font-family: "UhBee Namsoyoung", cursive; font-weight: 400;
+  font-size: 1em; line-height: 1.15; letter-spacing: -.025em;
+  color: #111; text-shadow: none; -webkit-text-stroke: 0;
+}
+.runway-words > strong { margin-top: 3px; font-size: 1.08em; }
+
+/* 말풍선만 확대하고 cqw로 정한 글씨 크기는 그대로 유지한다. */
+.runway-lettering { width: 38%; left: -1.5%; top: 17%; }
+/* 참고 이미지의 손그림 영상 안내 */
+.focus-voice-extra .ink-point {
+  justify-content: flex-start; align-items: center; gap: 10px;
+  margin: 0 0 5px; padding-left: 7%;
+}
+.focus-voice-extra .ink-point .ink {
+  font-family: "UhBee Namsoyoung", cursive; font-weight: 400;
+  font-size: clamp(26px, 2.4vw, 38px); line-height: 1.1;
+}
+.focus-voice-extra .ink-arrow-loop { width: 82px; height: 82px; transform: rotate(-12deg); flex-shrink: 0; }
+.focus-voice-extra .note {
+  display: block; margin: 0; border-radius: 0;
+  background: url("../assets/video-brush-note.svg") center / 100% 100% no-repeat;
+  padding: 34px 9% 48px; text-align: center;
+  font-family: "UhBee Namsoyoung", cursive; font-weight: 400;
+  font-size: clamp(24px, 2.25vw, 34px); line-height: 1.3;
+  color: #111; transform: none;
+}
+.focus-voice-extra .video-note-play { display: none; }
+@media(max-width: 600px) {
+  .focus-voice-extra .note { padding: 30px 8% 42px; font-size: 24px; }
+  .focus-voice-extra .ink-arrow-loop { width: 64px; height: 64px; }
+  .focus-voice-extra .ink-point .ink { font-size: 27px; }
+}
+
+/* 제공된 영상 안내 이미지를 비율과 배치 변형 없이 표시한다. */
+.focus-voice-extra .video-invitation {
+  display: block; width: min(100%, 374px); margin: 0 auto;
+  padding: 0; border: 0; background: white; border-radius: 0;
+}
+.video-invitation img { display: block; width: 100%; height: auto; }
+.video-invitation:focus-visible { outline: 2px solid #15a87e; outline-offset: 4px; }
+
+.focus-voice-extra .video-invitation { width: 100%; max-width: 640px; }
+
+.focus-voice-extra .video-invitation {
+  transform: translate(-48px, -30px) scale(1.3);
+  transform-origin: center center;
+}
+@media(max-width: 600px) {
+  .focus-voice-extra .video-invitation { transform: translate(-16px, -20px) scale(1.3); }
+}
+
+/* 말풍선 글자만 8% 축소하고 몸통의 시각적 중앙에 정렬 */
+.runway-lettering > .runway-words {
+  font-size: .92em;
+  left: 50%; top: 44%;
+  transform: translate(-50%, -50%);
+}
+
+/* 모바일 영상 안내는 메인 사진 바로 아래에 작게 배치한다. */
+@media (max-width: 760px) {
+  .focus-caption.is-voice .focus-voice-extra {
+    grid-column: 1; grid-row: 1;
+    width: 100%; margin: -12px 0 0;
+  }
+  .focus-voice-extra .video-invitation {
+    width: 90%; max-width: 374px;
+    margin: 0 auto;
+    transform: none;
+  }
+  .focus-caption.is-voice > p:first-child { grid-row: 2; }
+  .focus-carousel .focus-caption.is-voice h3 { grid-row: 3; }
+  .focus-caption.is-voice .more { grid-row: 4; }
+}
+
+/* VOICE 더보기는 공간을 유지한 채 숨겨 구분선 위치를 고정한다. */
+.focus-caption.is-voice .more { visibility: hidden; pointer-events: none; }
+
+.issue-theme .issue-handwriting {
+  display: inline-block;
+  width: 13.5em; max-width: 65vw; height: auto;
+  margin-left: 6px; vertical-align: middle;
+}
+
+/* 주제 문구는 안내 라벨 옆에 명조 계열의 실제 텍스트로 표시한다. */
+.issue-theme { display: flex; align-items: baseline; gap: 14px; }
+.issue-theme .issue-theme-copy {
+  margin-left: 0; color: #1a1a1a;
+  font-family: "Nanum Myeongjo", "Batang", "AppleMyungjo", serif;
+  font-size: 1.2em; font-weight: 600; line-height: 1.4;
+  white-space: nowrap; background: none;
+}
+@media (max-width: 480px) {
+  .issue-theme { gap: 10px; }
+  .issue-theme .issue-theme-copy { font-size: 1.1em; }
+}
+
+.life [data-story="nomics"] .shot img {
+  inset: 0; width: 100%; height: 100%; object-fit: cover;
+}

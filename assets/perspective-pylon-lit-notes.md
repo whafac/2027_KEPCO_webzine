@@ -1,0 +1,1 @@
+Built-in image_gen edit from perspective-extended.png: add realistic ground maintenance floodlights and service path lamps only in left-third/lower-left transmission tower corridor. Brighten tower bases and adjacent forest/path naturally; preserve composition, buildings, sky and other regions. Output perspective-pylon-lit.png. Original retained.

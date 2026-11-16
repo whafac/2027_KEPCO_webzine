@@ -1,0 +1,1 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 1000 1000" preserveAspectRatio="none"><defs><filter id="edge" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="20"/></filter></defs><polygon points="0,348 235,335 339,430 397,624 443,1000 0,1000" fill="white" filter="url(#edge)"/></svg>

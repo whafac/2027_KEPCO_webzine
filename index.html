@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KEPCO 웹진 Vol.643 · 2027 JANUARY — 기류, 방향을 읽다</title>
+  <meta name="description" content="KEPCO 웹진 2027년 1월호. 이달의 주제는 기류, 방향을 읽다.">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Nanum+Pen+Script&display=swap">
+  <link rel="stylesheet" href="css/style.css?v=20261115-bubble-type92">
+  <!-- 동작 줄이기 설정이 아니면 등장 애니메이션을 켠다. 스크립트가 없을 때는 CSS가 글을 숨기지 않는다 -->
+  <script>document.documentElement.classList.add("motion"); window.setTimeout(function () { if (!document.documentElement.dataset.motionReady) document.documentElement.classList.remove("motion"); }, 3000);</script>
+</head>
+<body>
+  <a class="skip" href="#content">본문으로 건너뛰기</a>
+
+  <!-- 상단 바: 로고는 가운데 밴드 왼쪽, 메뉴는 오른쪽 -->
+  <header class="topbar">
+    <span class="readbar" aria-hidden="true"></span>
+    <div class="topbar-inner">
+      <a class="brand" href="#cover" aria-label="KEPCO 웹진 표지로 이동">
+        <span class="mark" aria-hidden="true"></span>
+        <span class="brand-meta">2027 JANUARY<br>Vol.643</span>
+      </a>
+      <nav class="desktop-nav" aria-label="웹진 목차">
+        <a href="#cover">이달의 주제</a>
+        <a href="#focus">KEPCO FOCUS</a>
+        <a href="#perspective">PERSPECTIVE</a>
+        <a href="#field">FIELD &amp; PEOPLE</a>
+        <a href="#news">KEPCO NEWS</a>
+        <a href="travel.html">TRAVEL</a>
+        <a href="#life">LIFE &amp; CULTURE</a>
+      </nav>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-drawer">
+        <span class="menu-icon" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="sr-only">메뉴 열기</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="nav-drawer" id="nav-drawer" hidden>
+    <div class="nav-panel" role="dialog" aria-modal="true" aria-labelledby="nav-title">
+      <div class="nav-head">
+        <p id="nav-title">Vol.643</p>
+        <button class="nav-close" type="button">닫기</button>
+      </div>
+      <nav aria-label="웹진 목차">
+        <a href="#cover">이달의 주제</a>
+        <a href="#focus">KEPCO FOCUS</a>
+        <a href="#perspective">PERSPECTIVE</a>
+        <a href="#field">FIELD &amp; PEOPLE</a>
+        <a href="#news">KEPCO NEWS</a>
+        <a href="travel.html">TRAVEL</a>
+        <a href="#life">LIFE &amp; CULTURE</a>
+      </nav>
+    </div>
+  </div>
+
+  <svg class="sticker-filters" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+    <defs><filter id="runway-sticker" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB">
+      <feMorphology in="SourceAlpha" operator="dilate" radius="10" result="outline"/>
+      <feFlood flood-color="white" result="white"/>
+      <feComposite in="white" in2="outline" operator="in" result="border"/>
+      <feMerge><feMergeNode in="border"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="industrial-light-pixels" color-interpolation-filters="sRGB" x="-1%" y="-1%" width="102%" height="102%">
+      <feColorMatrix in="SourceGraphic" type="luminanceToAlpha" result="lights"/>
+      <feComponentTransfer in="lights" result="light-mask"><feFuncA type="linear" slope="3.5" intercept="-1.05"/></feComponentTransfer>
+      <feComposite in="SourceGraphic" in2="light-mask" operator="in" result="lit-pixels"/>
+      <feGaussianBlur in="lit-pixels" stdDeviation=".7" result="light-halo"/>
+      <feMerge><feMergeNode in="light-halo"/><feMergeNode in="lit-pixels"/></feMerge>
+    </filter></defs>
+  </svg>
+  <div class="sheet">
+    <!-- 왼쪽 초록 레일. 손글씨와 패러글라이더는 원본 윤곽을 그대로 씀 -->
+    <aside class="rail" aria-label="이달의 주제">
+      <div class="rail-follow">
+      <img class="rail-hand" src="assets/handwriting.png" alt="기류, 방향을 읽다">
+      <img class="rail-para" src="assets/paraglider.png" alt="">
+      <span class="rail-edition" aria-hidden="true">READ THE WIND<br><span>FIND YOUR DIRECTION.</span></span><span class="mark mark-dark" aria-hidden="true"></span>
+      </div>
+    </aside>
+
+    <main id="content">
+      <section class="cover" id="cover">
+        <div class="issue rise">
+          <p class="issue-vol">VOL.643 · 2027 JANUARY</p>
+          <p class="issue-theme">이달의 주제 <span class="issue-theme-copy">기류, 방향을 읽다</span></p>
+        </div>
+
+        <article class="hero">
+          <span class="shot hero-shot">
+            <img class="hero-background" src="assets/hero-sky-extended.png" width="1871" height="840" alt="푸른 하늘 위로 펄럭이는 KEPCO 로고가 새겨진 하얀 깃발">
+            <span class="hero-flag-layer" aria-hidden="true"><img src="assets/hero-flag-extended.png" width="1870" height="841" alt=""></span>
+          </span>
+          <div class="hero-copy rise">
+            <p class="eyebrow">COVER STORY</p>
+            <p><span class="badge">THEORY</span></p>
+            <h1><span class="title-line">바람은 보이지 않아도</span><span class="title-line">깃발은 흔들린다</span></h1>
+            <button class="more more-light" type="button" data-story="theory">더보기 →</button>
+          </div>
+        </article>
+      </section>
+
+      <section class="block" id="focus">
+        <div class="section-head rise">
+          <div class="section-head-label"><h2>KEPCO FOCUS</h2>
+          <span>이달의 주목</span></div>
+        </div>
+
+        <div class="focus">
+          <article class="voice focus-carousel rise" role="region" aria-roledescription="슬라이드" aria-label="이달의 주목 기사">
+            <div class="focus-stage">
+              <div class="focus-viewport">
+                <div class="focus-track">
+                  <button class="voice-media focus-slide" type="button" data-story="voice" aria-label="1 / 4 기사 보기">
+                    <img src="assets/voice-hd.jpg" width="760" height="460" alt="회의실에서 새해 바람을 메모로 붙이는 직원들">
+                  </button>
+                  <button class="voice-media focus-slide" type="button" data-story="now" aria-label="2 / 4 기사 보기" inert aria-hidden="true">
+                    <img src="assets/now-hd.jpg" width="760" height="460" alt="전력 계통을 모니터링하는 관제 화면">
+                  </button>
+                  <button class="voice-media focus-slide" type="button" data-story="process" aria-label="3 / 4 기사 보기" inert aria-hidden="true">
+                    <img src="assets/process-hd.jpg" width="760" height="460" alt="눈 덮인 산자락의 송전탑">
+                  </button>
+                  <button class="voice-media focus-slide" type="button" data-story="graphy" aria-label="4 / 4 기사 보기" inert aria-hidden="true">
+                    <img src="assets/graphy-hd.jpg" width="760" height="460" alt="노을 속의 송전선로">
+                  </button>
+                </div>
+              </div>
+              <button class="focus-arrow focus-prev" type="button" aria-label="이전 기사"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 4-8 8 8 8"/></svg></button>
+              <button class="focus-arrow focus-next" type="button" aria-label="다음 기사"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 4 8 8-8 8"/></svg></button>
+              <div class="focus-dots" role="group" aria-label="기사 슬라이드 선택"></div>
+            </div>
+            <div class="focus-caption is-voice">
+              <p><span class="badge">VOICE</span></p>
+              <h3>2027 한전인의 바람</h3>
+              <div class="voice-extra focus-voice-extra">
+                <button class="video-invitation" type="button" data-story="voice" aria-label="한전인의 2027 새해 바람을 담은 영상 보기 및 이벤트 안내">
+                  <img src="assets/video-invitation-hd.png" width="374" height="208" alt="눌러서 영상 보기. 한전인의 2027 새해 바람을 담은 영상을 보고 이벤트에 참여해보세요.">
+                </button>
+              </div>
+              <p class="focus-description" hidden>한전인의 2027 새해 바람을 담은 영상을 보고 이벤트에 참여해보세요.</p>
+              <button class="more" type="button" data-story="voice">더보기 →</button>
+            </div>
+            <div class="focus-playback">
+              <span class="focus-count" aria-hidden="true">01 / 04</span>
+              <button class="focus-pause" type="button" aria-label="자동 슬라이드 일시정지">일시정지</button>
+            </div>
+            <p class="sr-only focus-announcement" aria-live="polite" aria-atomic="true"></p>
+          </article>
+
+          <div class="focus-list" hidden>
+            <article class="focus-item rise">
+              <button type="button" data-story="now">
+                <span class="shot"><img src="assets/now-hd.jpg" width="220" height="160" alt="전력 계통을 모니터링하는 관제 화면"></span>
+                <span>
+                  <span class="badge">KEPCO NOW</span>
+                  <strong>논의에서 실행으로,<br>2027 전력산업 혁신과제</strong>
+                </span>
+              </button>
+            </article>
+            <article class="focus-item rise">
+              <button type="button" data-story="process">
+                <span class="shot"><img src="assets/process-hd.jpg" width="220" height="160" alt="눈 덮인 산자락의 송전탑"></span>
+                <span>
+                  <span class="badge">KEPCO PRO:CESS</span>
+                  <strong>한겨울 피크,<br>전력망은 이렇게 버틴다</strong>
+                </span>
+              </button>
+            </article>
+            <article class="focus-item rise">
+              <button type="button" data-story="graphy">
+                <span class="shot"><img src="assets/graphy-hd.jpg" width="220" height="160" alt="노을 속의 송전선로"></span>
+                <span>
+                  <span class="badge">KEPCO:GRAPHY</span>
+                  <strong>송전탑 없이 길을 넓히다,<br>가상송전선로(VPL)</strong>
+                </span>
+              </button>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="perspective" id="perspective">
+        <div class="perspective-copy rise">
+          <p><span class="badge">PERSPECTIVE</span></p>
+          <h2>메가 프로젝트 시대의<br>전력공급 속도는 <span class="hl">국가 경쟁력</span></h2>
+          <p class="byline">조홍종 단국대학교 경제학과 교수</p>
+          <button class="more" type="button" data-story="perspective">더보기 →</button>
+        </div>
+        <p class="perspective-slogan perspective-type perspective-lit-line">속도가 곧 경쟁력입니다</p>
+        <div class="perspective-background" aria-hidden="true">
+          <img src="assets/perspective-pylon-lit.png" width="1827" height="861" alt="">
+          <div class="industrial-lights" aria-hidden="true">
+            <span class="industrial-light-zone" style="--zone:0;--delay:0ms"><img src="assets/perspective-pylon-lit.png" width="1827" height="861" alt=""></span>
+            <span class="industrial-light-zone" style="--zone:1;--delay:500ms"><img src="assets/perspective-pylon-lit.png" width="1827" height="861" alt=""></span>
+            <span class="industrial-light-zone" style="--zone:2;--delay:1000ms"><img src="assets/perspective-pylon-lit.png" width="1827" height="861" alt=""></span>
+            <span class="industrial-light-zone" style="--zone:3;--delay:1550ms"><img src="assets/perspective-pylon-lit.png" width="1827" height="861" alt=""></span>
+            <span class="industrial-light-zone" style="--zone:4;--delay:2100ms"><img src="assets/perspective-pylon-lit.png" width="1827" height="861" alt=""></span>
+            <span class="industrial-light-zone" style="--zone:5;--delay:2650ms"><img src="assets/perspective-pylon-lit.png" width="1827" height="861" alt=""></span>
+            <span class="industrial-light-zone" style="--zone:6;--delay:3200ms"><img src="assets/perspective-pylon-lit.png" width="1827" height="861" alt=""></span>
+            <span class="industrial-light-zone" style="--zone:7;--delay:3700ms"><img src="assets/perspective-pylon-lit.png" width="1827" height="861" alt=""></span>
+            <span class="industrial-light-zone" style="--zone:8;--delay:1100ms"><img src="assets/perspective-pylon-lit.png" width="1827" height="861" alt=""></span>
+            <span class="industrial-light-zone" style="--zone:9;--delay:1800ms"><img src="assets/perspective-pylon-lit.png" width="1827" height="861" alt=""></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="block" id="field">
+        <div class="section-head rise">
+          <div class="section-head-label"><h2>FIELD &amp; PEOPLE</h2>
+          <span>현장과 사람</span></div>
+        </div>
+        <div class="duo">
+          <article class="card rise">
+            <button type="button" data-story="site">
+              <span class="shot"><img src="assets/site.jpg" width="648" height="360" alt="설비 사이를 걷는 현장 근무자"></span>
+              <span class="badge">SITE</span>
+              <strong>서해 최북단, 섬의 겨울을 밝히다</strong>
+              <em>연평도 내연발전소</em>
+            </button>
+          </article>
+          <article class="card rise">
+            <button type="button" data-story="runway">
+              <span class="shot runway-shot"><img class="runway-background" src="assets/runway.jpg" width="648" height="360" alt="브라운 코트를 입은 직원"><img class="runway-cutout" src="assets/runway-cutout.png" width="1672" height="934" alt="" aria-hidden="true"><span class="runway-lettering" aria-hidden="true"><span class="runway-words"><span>오늘 좀</span><strong>멋진데?</strong></span><i></i></span></span>
+              <span class="badge">KEPCO RUNWAY</span>
+              <strong>출근길 OOTD, 겨울의 멋</strong>
+              <em>광주전남본부</em>
+            </button>
+          </article>
+        </div>
+      </section>
+
+      <section id="news" class="news-feature" aria-labelledby="news-heading">
+        <img class="news-feature-background" src="assets/news-background.jpg" width="1619" height="971" alt="" loading="lazy">
+        <header class="news-feature-heading rise">
+          <h2 id="news-heading">KEPCO NEWS</h2>
+          <div class="news-live"><span class="news-live-mark" aria-label="LIVE"><i aria-hidden="true"></i><b>LIVE</b></span><p>지금, 한전의 소식</p></div>
+        </header>
+        <div class="news-card-grid">
+          <article class="news-card rise">
+            <button type="button" data-story="news">
+              <img src="assets/news-npu.jpg" width="1619" height="971" alt="AI 감시용 엣지 장비와 카메라 예시 이미지" loading="lazy">
+              <span class="news-card-copy"><span class="badge">기술 · 혁신</span><strong>국산 AI 반도체(NPU)<br>변전소 AI 감시 현장 성능검증</strong><span class="news-card-summary">현장에서 바로 판독하는 AI,<br>이상 징후를 더 빠르게.</span><span class="news-card-more">자세히 보기 <span aria-hidden="true">↗</span></span></span>
+            </button>
+          </article>
+          <article class="news-card rise">
+            <button type="button" data-story="news-winter">
+              <img src="assets/news-winter.jpg" width="1619" height="971" alt="겨울철 변전 설비 점검 예시 이미지" loading="lazy">
+              <span class="news-card-copy"><span class="badge">안전 · 설비</span><strong>겨울철 전력 공급을 위한<br>설비 보강 소식</strong><span class="news-card-summary">겨울철 설비 보강에 관한<br>한전의 소식을 전합니다.</span><span class="news-card-more">자세히 보기 <span aria-hidden="true">↗</span></span></span>
+            </button>
+          </article>
+          <article class="news-card rise">
+            <button type="button" data-story="news-local">
+              <img src="assets/news-community-v2.jpg" width="648" height="360" alt="주민과 함께하는 에너지 상담 예시 이미지" loading="lazy">
+              <span class="news-card-copy"><span class="badge">상생 · 협력</span><strong>지역과 함께하는 한전,<br>협력의 소식</strong><span class="news-card-summary">지역 협력에 관한 이야기를<br>이번 호에서 만나보세요.</span><span class="news-card-more">자세히 보기 <span aria-hidden="true">↗</span></span></span>
+            </button>
+          </article>
+        </div>
+      </section>
+
+      <section class="block" id="travel">
+        <div class="section-head rise">
+          <div class="section-head-label"><h2>TRAVEL</h2>
+          <span>떠나고 싶은 곳</span></div>
+        </div>
+        <div class="travel-head rise">
+          <div>
+            <p><span class="badge">TWIN TRIP</span></p>
+            <h3>해가 떠오르는 곳, 땅이 끝나는 곳<br>그곳에 서다</h3>
+          </div>
+          <button class="more" type="button" data-story="twin">더보기 →</button>
+        </div>
+        <div class="twin rise">
+          <!-- 사진 줄만 감싸야 VS 원이 캡션이 아니라 사진 한가운데에 놓인다 -->
+          <div class="twin-photos">
+            <button type="button" data-story="twin" aria-label="울산 간절곶 사진 보기">
+              <img src="assets/twin-left.jpg" width="656" height="458" alt="">
+            </button>
+            <button type="button" data-story="twin" aria-label="포르투갈 호카곶 사진 보기">
+              <img src="assets/twin-right.jpg" width="660" height="458" alt="">
+            </button>
+            <p class="vs" aria-hidden="true">VS</p>
+          </div>
+          <div class="twin-captions">
+            <p><strong>울산 간절곶</strong> <span>KOREA · ULSAN</span></p>
+            <p><strong>포르투갈 호카곶</strong> <span>PORTUGAL · CABO DA ROCA</span></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="block life" id="life">
+        <div class="section-head rise">
+          <div class="section-head-label"><h2>LIFE &amp; CULTURE</h2>
+          <span>일상과 교양</span></div>
+        </div>
+        <div class="quad">
+          <article class="card rise">
+            <button type="button" data-story="nomics">
+              <span class="shot"><img src="assets/interest-rate-news.png" width="320" height="360" alt="금리 그래프가 담긴 금융 신문과 퍼센트 기호, 동전 일러스트"></span>
+              <span class="badge">NEWS NOMICS</span>
+              <strong>금리 뉴스에 왜 새가 날아들었을까?</strong>
+            </button>
+          </article>
+          <article class="card rise">
+            <button type="button" data-story="table">
+              <span class="shot"><img src="assets/table.jpg" width="316" height="360" alt="양념한 꼬막과 겨울 밑반찬"></span>
+              <span class="badge">KEPCO TABLE</span>
+              <strong>쫄깃한 겨울 보약, 꼬막</strong>
+            </button>
+          </article>
+          <article class="card rise">
+            <button type="button" data-story="movie">
+              <span class="shot"><img src="assets/movie.jpg" width="320" height="360" alt="어두워진 태양 앞을 지나는 우주선"></span>
+              <span class="badge">MOVIE:LAB</span>
+              <strong>태양이 어두워진다면?</strong>
+              <em>「프로젝트 헤일메리」로 읽는 E=mc²</em>
+            </button>
+          </article>
+          <article class="card rise">
+            <button type="button" data-story="diary">
+              <span class="shot"><img src="assets/diary.jpg" width="316" height="360" alt="일기장과 커피가 놓인 아침 책상"></span>
+              <span class="badge">오피스 다이어리</span>
+              <strong>새해 다짐, 3일째 되는 날</strong>
+            </button>
+          </article>
+        </div>
+      </section>
+
+      <footer class="colophon rise">
+        <span class="mark mark-gray" aria-hidden="true"></span>
+        <p>KEPCO Web Magazine © 2026 KEPCO. All Rights Reserved.</p>
+      </footer>
+    </main>
+  </div>
+
+  <dialog class="story" id="story" aria-labelledby="story-title">
+    <article>
+      <button class="story-close" type="button">닫기</button>
+      <img class="story-visual" alt="">
+      <p class="story-kicker"><span class="badge"></span></p>
+      <h3 id="story-title"></h3>
+      <p class="story-by" hidden></p>
+      <div class="story-body"></div>
+    </article>
+  </dialog>
+
+  <script src="js/main.js?v=20261115-site-restored"></script>
+</body>
+</html>
